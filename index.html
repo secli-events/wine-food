@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seclì Wine & Food</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+    /* Contenitore dello sfondo */
+    .background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 0.65s ease-in;
+      z-index: -1;
+    }
+
+    .background.visible {
+      opacity: 1;
+    }
+
+    body.loaded {
+      overflow: auto;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+
+    .content.visible {
+      opacity: 1;
+    }
+
+    h1, p {
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+      margin: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+    padding-top: 31vh; /* ⬅️ Spinge i bottoni verso il basso dello schermo */
+      
+      gap: 20px;
+    }
+
+.buttons button {
+  padding: 15px 20px;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+  cursor: pointer;
+  font-weight: bold; 
+  background-color: rgba(192, 64, 64, 0.6); 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.25s ease;
+}
+
+    .buttons button:hover {
+      background-color: rgba(192, 64, 64, 1); 
+      transition: background-color 0.1s ease-in;
+
+    }
+
+    .icon {
+      font-size: 1.4em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sfondo -->
+  <div class="background" id="bg"></div>
+
+  <!-- Contenuto -->
+  <div class="content" id="content">
+
+    <div class="buttons">
+      <button onclick="location.href='programma.html'">
+        <span class="icon">🍷</span> Wine map
+      </button>
+      <button onclick="location.href='espositori.html'">
+        <span class="icon">🍔</span> Food map
+      </button>
+      <button onclick="location.href='info.html'">
+        <span class="icon">🎶</span> Music
+      </button>
+      <button onclick="location.href='who.html'">
+        <span class="icon">👥</span> Chi siamo
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Precarica l'immagine di sfondo
+    const bg = document.getElementById('bg');
+    const content = document.getElementById('content');
+
+    const image = new Image();
+    image.src = 'bg.png';
+
+    image.onload = function () {
+      bg.style.backgroundImage = `url('${image.src}')`;
+      bg.classList.add('visible');
+
+      // Aspetta che il fade-in dello sfondo sia visibile, poi mostra il contenuto
+      setTimeout(() => {
+        content.classList.add('visible');
+        document.body.classList.add('loaded');
+      }, 710); // poco dopo il fade-in dello sfondo
+    };
+  </script>
+</body>
+</html>
