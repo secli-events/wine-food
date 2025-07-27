@@ -2,39 +2,80 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Festa del Vino e del Cibo</title>
+  <title>Music</title>
   <style>
+    /* Sfondo fisso */
     body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      background-image: url('sfondo.jpg'); /* Cambia con lo sfondo corretto */
+      background-size: cover;
+      background-position: top left;
+      background-attachment: fixed;
       font-family: sans-serif;
-      background: #faf0e6;
-      text-align: center;
-      padding: 60px;
     }
-    h1 {
-      color: #800000;
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-in forwards;
     }
-    button {
-      margin: 20px;
-      padding: 15px 30px;
-      font-size: 18px;
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: -40px; /* Sovrapposizione leggera */
+      margin-top: 15vh;
+      position: relative;
+    }
+
+    .card {
+      width: 180px;
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.5s ease;
       cursor: pointer;
-      background-color: #c04040;
-      color: white;
-      border: none;
-      border-radius: 8px;
+      z-index: 1;
+      object-fit: cover;
     }
-    button:hover {
-      background-color: #a03030;
+
+    .card:hover {
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    .card.fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      border-radius: 0;
+      z-index: 999;
     }
   </style>
 </head>
-<body>
-  <h1>Festa del Vino e del Cibo</h1>
-  <p>Un evento organizzato dal Comune per celebrare i sapori locali</p>
-  
-  <button onclick="location.href='foodmap.html'">Food</button>
-  <button onclick="location.href='winemap.html'">Wine</button>
-  <button onclick="location.href='music.html'">Music</button>
-  <button onclick="location.href='who.html'">Chi siamo</button>
+<body class="fade-in">
+
+  <div class="cards">
+    <img src="cortese.jpg" alt="Cover 1" class="card" />
+    <img src="laco.jpg" alt="Cover 2" class="card" />
+  </div>
+
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.add('fullscreen');
+      });
+    });
+  </script>
 </body>
 </html>
