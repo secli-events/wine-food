@@ -28,17 +28,16 @@
                 margin: 0;
                 padding: 0;
                 font-family: sans-serif;
-                height: auto; /* oppure: 100% solo se necessario */
                 overflow-x: hidden; /* evita scroll orizzontale */
             }
             
             /* Contenitore dello sfondo */
             .background {
+                background-position: center top; /* Allinea lo sfondo in alto a sinistra */
                 position: fixed;
                 top: 0; left: 0;
                 width: 100%; height: 100%;
-                background-position: center;
-                background-size: 100% auto;
+                background-size: 150% auto;
                 background-repeat: no-repeat;
                 opacity: 0;
                 transition: opacity 0.65s ease-in;
@@ -77,18 +76,18 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                max-width: 400px;
+                max-width: 250px;
                 padding-top: 35vh; /* ⬅️ Spinge i bottoni verso il basso dello schermo */
                 
                 gap: 20px;
             }
             
             .buttons button {
-                padding: 15px 20px;
-                font-size: 1.4em;
+                padding: 10px 14px;
+                font-size: 1.1em;
                 display: flex;
                 align-items: center;
-                gap: 12px;
+                gap: 8px;
                 justify-content: center;
                 cursor: pointer;
                 font-weight: bold; 
