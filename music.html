@@ -59,6 +59,9 @@
             border-radius: 0;
             z-index: 999;
         }
+        .cards.fullscreen {
+            padding: 0px 0px; /* 👈 controlla qui lo spazio "x" */
+        }
     </style>
 </head>
 <body class="fade-in">
@@ -72,7 +75,13 @@
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('click', () => {
                 card.classList.add('fullscreen');
+
+                document.querySelectorAll('.cards').forEach(cards =>{
+                    cards.classList.add('fullscreen');
+                })
+
             });
+
         });
     </script>
 </body>
