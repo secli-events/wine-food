@@ -10,9 +10,9 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            background-image: url('sfondo.jpg'); /* Cambia con lo sfondo corretto */
-            background-size: cover;
-            background-position: top left;
+            background-image: url('bg.png'); /* Cambia con lo sfondo corretto */
+            background-size: 150% auto;
+            background-position: center top; /* Allinea lo sfondo in alto a sinistra */
             background-attachment: fixed;
             font-family: sans-serif;
         }
@@ -44,15 +44,12 @@
             cursor: pointer;
             z-index: 1;
             object-fit: cover;
+            transform-origin: center center; 
+
         }
         
-        .card:hover {
-            transform: scale(1.05);
-            z-index: 2;
-        }
         
         .card.fullscreen {
-            position: fixed;
             top: 0;
             width: 100vw;
             object-fit: cover;
@@ -62,6 +59,17 @@
         .cards.fullscreen {
             padding: 0px 0px; /* 👈 controlla qui lo spazio "x" */
         }
+        .card:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .card.hidden-card {
+  width: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
     </style>
 </head>
 <body class="fade-in">
@@ -71,18 +79,33 @@
         <img src="laco.jpg" alt="Cover 2" class="card" />
     </div>
     
-    <script>
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.add('fullscreen');
+<script>
+  const cards = document.querySelectorAll('.card');
 
-                document.querySelectorAll('.cards').forEach(cards =>{
-                    cards.classList.add('fullscreen');
+  cards.forEach(clickedCard => {
+    clickedCard.addEventListener('click', () => {
+        document.querySelectorAll('.cards').forEach(_cards =>{
+                    _cards.classList.toggle('fullscreen');
                 })
 
-            });
+      const isFullscreen = clickedCard.classList.contains('fullscreen');
 
+      // Reset tutte le card
+      cards.forEach(card => {
+        card.classList.remove('fullscreen', 'hidden-card');
+      });
+
+      if (!isFullscreen) {
+        // Vai in fullscreen solo su quella cliccata
+        clickedCard.classList.add('fullscreen');
+        cards.forEach(card => {
+          if (card !== clickedCard) {
+            card.classList.add('hidden-card');
+          }
         });
-    </script>
+      }
+    });
+  });
+</script>
 </body>
 </html>
