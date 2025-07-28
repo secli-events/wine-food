@@ -14,11 +14,11 @@
             height: 100vh;
             overflow: hidden;
             /* Rimosso lo sfondo da qui per spostarlo nello pseudo-elemento */
-            background-color: rgb(83, 0, 116);; /* Aggiunto un colore di fallback che si vedrà durante il fade-out */
+            background-color: rgb(83, 0, 116); /* Aggiunto un colore di fallback che si vedrà durante il fade-out */
             font-family: sans-serif;
             position: relative; /* Necessario per il corretto z-index dello pseudo-elemento */
         }
-
+        
         /* --- NUOVO: Sfondo nello pseudo-elemento --- */
         body::before {
             content: '';
@@ -35,13 +35,13 @@
             opacity: 1; /* Stato iniziale */
             transition: opacity 0.5s ease; /* Transizione per il fade-out */
         }
-
+        
         /* --- NUOVO: Classe per attivare il fade-out dello sfondo --- */
         body.fade-out-background::before {
             opacity: 0;
         }
         /* --- FINE NUOVE REGOLE PER LO SFONDO --- */
-
+        
         .fade-in {
             animation: fadeIn 0.8s ease-in forwards;
         }
@@ -163,6 +163,22 @@
                 border-radius: 20px;
             }
         }
+        @keyframes pulse-border2 {
+            0% {
+                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                border-radius: 20px;
+            }
+            50% {
+                box-shadow: 0 0 1px 23px rgba(181, 4, 121, 1);
+                border-radius: 260px;
+            }
+            100% {
+                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                border-radius: 20px;
+            }
+        }
+        
+        
         /* --- FINE NUOVI STILI --- */
         #back-button {
             position: fixed;
@@ -211,19 +227,19 @@
             const backButton = document.getElementById('back-button');
             const mainContent = document.getElementById('main-content');
             const body = document.body; // <-- NUOVO: Selezioniamo il body
-
+            
             backButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 
                 // MODIFICATO: Applichiamo il fade-out sia al contenuto che allo sfondo
                 mainContent.classList.add('fade-out');
                 body.classList.add('fade-out-background'); // <-- NUOVO
-
+                
                 setTimeout(() => {
                     window.location.href = './index.html';
                 }, 500); // La durata corrisponde alla transizione CSS
             });
-
+            
             const cards = document.querySelectorAll('.card');
             const captionDisplay = document.getElementById('caption-display');
             let typingTimeout = null;
