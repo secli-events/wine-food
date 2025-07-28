@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -12,7 +13,7 @@
             overflow: hidden;
             background-image: url('bg_logo.png'); /* Cambia con lo sfondo corretto */
             background-size: 150% auto;
-            background-position: center top; /* Allinea lo sfondo in alto a sinistra */
+            background-position: center top;
             background-attachment: fixed;
             font-family: sans-serif;
         }
@@ -28,11 +29,11 @@
         
         .cards {
             display: flex;
-            justify-content: space-between; /* distribuisce le card con spazi uguali */
+            justify-content: space-between;
             align-items: center;
             margin-top: 15vh;
-            padding: 0 30px; /* 👈 controlla qui lo spazio "x" */
-            padding-top: 20vh;
+            padding: 0 30px;
+            padding-top: 22vh;
             position: relative;
         }
         
@@ -46,9 +47,9 @@
             z-index: 1;
             object-fit: cover;
             transform-origin: center center; 
-
+            border-style: visible;
+            
         }
-        
         
         .card.fullscreen {
             top: 0;
@@ -57,59 +58,140 @@
             object-fit: cover;
             border-radius: 0;
             z-index: 999;
-        }
-        .cards.fullscreen {
-            padding: 0px 0px; /* 👈 controlla qui lo spazio "x" */
-            padding-top: 20vh;
+            border: 30px solid rgba(181, 4, 121, 0.75);
+            border-bottom: 0px;
 
         }
+        
+        .cards.fullscreen {
+            padding: 0px 0px;
+            padding-top: 22vh;
+        }
+        
         .card:hover {
             transform: scale(1.05);
             z-index: 2;
         }
-
+        
         .card.hidden-card {
-  width: 0 !important;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s ease;
-}
+            width: 0 !important;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+        
+        /* --- NUOVI STILI PER LA CAPTION --- */
+        #caption-display {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black;
+            font-weight: bold;
+            font-size: 5vw;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            white-space: pre-wrap; /* permette \n e a capo */
+            text-align: center;
+            margin-top: 14px;
+            width: 70vw; /* 👈 limita la larghezza su schermi piccoli */
+            padding: 10px 20px;
+            box-sizing: border-box;
+            
+            background-color: rgba(181, 4, 121, 0.75); 
+            border-radius: 12px;
+            backdrop-filter: blur(4px); /* effetto vetro opaco (opzionale) */
+        }
+        
+        
+        #caption-display.visible {
+            opacity: 1;
+        }
+        
+        /* Cursore che lampeggia per l'effetto scrittura */
+        #caption-display.typing::after {
+            content: '_';
+            opacity: 1;
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        /* --- FINE NUOVI STILI --- */
+        
     </style>
 </head>
 <body class="fade-in">
     
     <div class="cards">
-        <img src="cortese.jpg" alt="Cover 1" class="card" />
-        <img src="laco.jpg" alt="Cover 2" class="card" />
+        <!-- Aggiunto data-text per contenere il testo della caption -->
+        <img src="cortese.jpg" alt="Cover 1" class="card" data-text="Caption per Cortese  Canta Battisti/nSTART h 22:00." />
+        <img src="laco.jpg" alt="Cover 2" class="card" data-text="Caption per Laco/nStart h 20:00" />
     </div>
     
-<script>
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach(clickedCard => {
-    clickedCard.addEventListener('click', () => {
-        document.querySelectorAll('.cards').forEach(_cards =>{
-                    _cards.classList.toggle('fullscreen');
-                })
-
-      const isFullscreen = clickedCard.classList.contains('fullscreen');
-
-      // Reset tutte le card
-      cards.forEach(card => {
-        card.classList.remove('fullscreen', 'hidden-card');
-      });
-
-      if (!isFullscreen) {
-        // Vai in fullscreen solo su quella cliccata
-        clickedCard.classList.add('fullscreen');
-        cards.forEach(card => {
-          if (card !== clickedCard) {
-            card.classList.add('hidden-card');
-          }
+    <!-- Elemento separato per mostrare la caption -->
+    <div id="caption-display"></div>
+    
+    <script>
+        const cards = document.querySelectorAll('.card');
+        // Seleziona l'elemento della caption
+        const captionDisplay = document.getElementById('caption-display');
+        
+        // Funzione per l'effetto scrittura (riutilizzabile)
+        function typeWriter(element, text, i = 0) {
+        element.classList.add('typing');
+        if (i < text.length) {
+            const char = text.charAt(i)+text.charAt(i+1) == "/n" ? '<br>' : text.charAt(i);
+            if (char == "<br>"){i++}
+            element.innerHTML += char;
+            setTimeout(() => typeWriter(element, text, i + 1), 75);
+        } else {
+            element.classList.remove('typing');
+        }
+        }
+        
+        cards.forEach(clickedCard => {
+            clickedCard.addEventListener('click', () => {
+                document.querySelector('.cards').classList.toggle('fullscreen');
+                
+                const isFullscreen = clickedCard.classList.contains('fullscreen');
+                
+                // --- NUOVA LOGICA PER LA CAPTION ---
+                // Ad ogni click, nascondi e svuota la caption precedente
+                captionDisplay.innerHTML = '';
+                captionDisplay.classList.remove('visible', 'typing');
+                // ------------------------------------
+                
+                // Reset tutte le card
+                cards.forEach(card => {
+                    card.classList.remove('fullscreen', 'hidden-card');
+                });
+                
+                if (!isFullscreen) {
+                    // Vai in fullscreen solo su quella cliccata
+                    clickedCard.classList.add('fullscreen');
+                    cards.forEach(card => {
+                        if (card !== clickedCard) {
+                            card.classList.add('hidden-card');
+                        }
+                    });
+                    
+                    // --- NUOVA LOGICA PER LA CAPTION ---
+                    // Prendi il testo dal data-attribute e avvia l'effetto
+                    const textToType = clickedCard.dataset.text;
+                    if (textToType) {
+                        captionDisplay.classList.add('visible');
+                        typeWriter(captionDisplay, textToType);
+                    }
+                    // ------------------------------------
+                }
+            });
         });
-      }
-    });
-  });
-</script>
+        
+    </script>
 </body>
 </html>
