@@ -1,23 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Music</title>
     <style>
-        /* Sfondo fisso */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            background-image: url('bg_logo.png'); /* Cambia con lo sfondo corretto */
+            /* Rimosso lo sfondo da qui per spostarlo nello pseudo-elemento */
+            background-color: rgb(83, 0, 116);; /* Aggiunto un colore di fallback che si vedrà durante il fade-out */
+            font-family: sans-serif;
+            position: relative; /* Necessario per il corretto z-index dello pseudo-elemento */
+        }
+
+        /* --- NUOVO: Sfondo nello pseudo-elemento --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg_logo.png');
             background-size: 150% auto;
             background-position: center top;
             background-attachment: fixed;
-            font-family: sans-serif;
+            z-index: -1; /* Mette lo sfondo dietro a tutto il contenuto */
+            opacity: 1; /* Stato iniziale */
+            transition: opacity 0.5s ease; /* Transizione per il fade-out */
         }
-        
+
+        /* --- NUOVO: Classe per attivare il fade-out dello sfondo --- */
+        body.fade-out-background::before {
+            opacity: 0;
+        }
+        /* --- FINE NUOVE REGOLE PER LO SFONDO --- */
+
         .fade-in {
             animation: fadeIn 0.8s ease-in forwards;
         }
@@ -50,7 +74,7 @@
             transform-origin: center center; 
             border-style: visible;
             animation: pulse-border 1s infinite ease-in-out;
-
+            
             
         }
         
@@ -64,7 +88,7 @@
             border: 30px solid rgba(181, 4, 121, 0.75);
             border-bottom: 0px;
             animation: none !important;
-
+            
             
         }
         
@@ -170,87 +194,90 @@
         }
     </style>
 </head>
-<a href="./index.html" id="back-button"> ⬅ </a>
+<a href="#" id="back-button"> ⬅ </a>
 
 <body class="fade-in">
-    
-    <div class="cards">
-        <!-- Aggiunto data-text per contenere il testo della caption -->
-        <img src="cortese.jpg" alt="Cover 1" class="card" data-text="Caption per Cortese  Canta Battisti/nSTART h 22:00." />
-        <img src="laco.jpg" alt="Cover 2" class="card" data-text="Caption per Laco/nStart h 20:00" />
-    </div>
-    
-    <!-- Elemento separato per mostrare la caption -->
-    <div id="caption-display"></div>
-    
-    <script>
-        const cards = document.querySelectorAll('.card');
-        // Seleziona l'elemento della caption
-        const captionDisplay = document.getElementById('caption-display');
-        let typingTimeout = null;
+    <div id="main-content">    
+        <div class="cards">
+            <!-- Aggiunto data-text per contenere il testo della caption -->
+            <img src="cortese.jpg" alt="Cover 1" class="card" data-text="Caption per Cortese  Canta Battisti/nSTART h 22:00." />
+            <img src="laco.jpg" alt="Cover 2" class="card" data-text="Caption per Laco/nStart h 20:00" />
+        </div>
         
-        // Funzione per l'effetto scrittura (riutilizzabile)
-        function typeWriter(element, text, i = 0) {
-            element.classList.add('typing');
+        <!-- Elemento separato per mostrare la caption -->
+        <div id="caption-display"></div>
+        
+        <script>
+            const backButton = document.getElementById('back-button');
+            const mainContent = document.getElementById('main-content');
+            const body = document.body; // <-- NUOVO: Selezioniamo il body
+
+            backButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // MODIFICATO: Applichiamo il fade-out sia al contenuto che allo sfondo
+                mainContent.classList.add('fade-out');
+                body.classList.add('fade-out-background'); // <-- NUOVO
+
+                setTimeout(() => {
+                    window.location.href = './index.html';
+                }, 500); // La durata corrisponde alla transizione CSS
+            });
+
+            const cards = document.querySelectorAll('.card');
+            const captionDisplay = document.getElementById('caption-display');
+            let typingTimeout = null;
             
-            if (i < text.length) {
-                const isNewLine = text.charAt(i) === '/' && text.charAt(i + 1) === 'n';
-                const char = isNewLine ? '<br>' : text.charAt(i);
+            function typeWriter(element, text, i = 0) {
+                element.classList.add('typing');
                 
-                if (isNewLine) i++; // salta anche 'n'
-                
-                element.innerHTML += char;
-                
-                typingTimeout = setTimeout(() => typeWriter(element, text, i + 1), 75);
-            } else {
-                element.classList.remove('typing');
+                if (i < text.length) {
+                    const isNewLine = text.charAt(i) === '/' && text.charAt(i + 1) === 'n';
+                    const char = isNewLine ? '<br>' : text.charAt(i);
+                    
+                    if (isNewLine) i++;
+                    
+                    element.innerHTML += char;
+                    
+                    typingTimeout = setTimeout(() => typeWriter(element, text, i + 1), 75);
+                } else {
+                    element.classList.remove('typing');
+                }
             }
-        }
-        
-        cards.forEach(clickedCard => {
-            clickedCard.addEventListener('click', () => {
-                document.querySelector('.cards').classList.toggle('fullscreen');
-                
-                const isFullscreen = clickedCard.classList.contains('fullscreen');
-                
-                // --- NUOVA LOGICA PER LA CAPTION ---
-                // Ad ogni click, nascondi e svuota la caption precedente
-                // Interrompi il typewriter in corso
-                clearTimeout(typingTimeout);
-                typingTimeout = null;
-                
-                // Svuota e nascondi la caption
-                captionDisplay.innerHTML = '';
-                captionDisplay.classList.remove('visible', 'typing');
-                
-                // ------------------------------------
-                
-                // Reset tutte le card
-                cards.forEach(card => {
-                    card.classList.remove('fullscreen', 'hidden-card');
-                });
-                
-                if (!isFullscreen) {
-                    // Vai in fullscreen solo su quella cliccata
-                    clickedCard.classList.add('fullscreen');
+            
+            cards.forEach(clickedCard => {
+                clickedCard.addEventListener('click', () => {
+                    document.querySelector('.cards').classList.toggle('fullscreen');
+                    const isFullscreen = clickedCard.classList.contains('fullscreen');
+                    
+                    clearTimeout(typingTimeout);
+                    typingTimeout = null;
+                    
+                    captionDisplay.innerHTML = '';
+                    captionDisplay.classList.remove('visible', 'typing');
+                    
                     cards.forEach(card => {
-                        if (card !== clickedCard) {
-                            card.classList.add('hidden-card');
-                        }
+                        card.classList.remove('fullscreen', 'hidden-card');
                     });
                     
-                    // --- NUOVA LOGICA PER LA CAPTION ---
-                    // Prendi il testo dal data-attribute e avvia l'effetto
-                    const textToType = clickedCard.dataset.text;
-                    if (textToType) {
-                        captionDisplay.classList.add('visible');
-                        typeWriter(captionDisplay, textToType);
+                    if (!isFullscreen) {
+                        clickedCard.classList.add('fullscreen');
+                        cards.forEach(card => {
+                            if (card !== clickedCard) {
+                                card.classList.add('hidden-card');
+                            }
+                        });
+                        
+                        const textToType = clickedCard.dataset.text;
+                        if (textToType) {
+                            captionDisplay.classList.add('visible');
+                            typeWriter(captionDisplay, textToType);
+                        }
                     }
-                    // ------------------------------------
-                }
+                });
             });
-        });
-        
-    </script>
+            
+        </script>
+    </div>
 </body>
 </html>
