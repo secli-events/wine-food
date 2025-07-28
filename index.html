@@ -56,7 +56,7 @@
             width: 100%; height: 100%;
             background-size: 150% auto;
             opacity: 0;
-            transition: opacity 0.65s ease-in;
+            transition: opacity 0.4s ease-in;
             z-index: -1;
         }
         
@@ -134,8 +134,7 @@
         }
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            transition: opacity 0.4s ease-out;
         }
         
         .fade-in.visible {
@@ -272,7 +271,7 @@
                 // Attende la fine dell'animazione (0.5s) prima di cambiare pagina
                 setTimeout(() => {
                     window.location.href = destination;
-                }, 500); // 500ms = 0.5s, come nella transizione CSS
+                }, 600); // 500ms = 0.5s, come nella transizione CSS
             });
         });
         /* --- FINE AGGIUNTA --- */
