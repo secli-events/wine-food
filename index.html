@@ -15,7 +15,7 @@
         /* --- AGGIUNTO: Classe per il fade-out globale --- */
         .fade-out-transition {
             opacity: 0 !important; /* !important per sovrascrivere la classe .visible */
-            transition: opacity 0.4s ease-in;
+            transition: opacity 0.3s ease-in;
         }
         /* --- FINE AGGIUNTA --- */
 
@@ -134,7 +134,7 @@
         }
         .fade-in {
             opacity: 0;
-            transition: opacity 0.4s ease-out;
+            transition: opacity 0.3s ease-out;
         }
         
         .fade-in.visible {
@@ -271,7 +271,7 @@
                 // Attende la fine dell'animazione (0.5s) prima di cambiare pagina
                 setTimeout(() => {
                     window.location.href = destination;
-                }, 600); // 500ms = 0.5s, come nella transizione CSS
+                }, 400); // 500ms = 0.5s, come nella transizione CSS
             });
         });
         /* --- FINE AGGIUNTA --- */

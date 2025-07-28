@@ -6,7 +6,7 @@
     <style>
         .fade-out {
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.3s ease;
         }
         body {
             margin: 0;
@@ -43,7 +43,7 @@
         /* --- FINE NUOVE REGOLE PER LO SFONDO --- */
         
         .fade-in {
-            animation: fadeIn 0.8s ease-in forwards;
+            animation: fadeIn 0.3s ease-in forwards;
         }
         
         @keyframes fadeIn {
@@ -237,7 +237,7 @@
                 
                 setTimeout(() => {
                     window.location.href = './index.html';
-                }, 500); // La durata corrisponde alla transizione CSS
+                }, 400); // La durata corrisponde alla transizione CSS
             });
             
             const cards = document.querySelectorAll('.card');
