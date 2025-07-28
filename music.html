@@ -38,6 +38,7 @@
         }
         
         .card {
+            transform: scale(1.05);
             width: 37vw;
             aspect-ratio: 1 / 1;
             border-radius: 20px;
@@ -48,6 +49,8 @@
             object-fit: cover;
             transform-origin: center center; 
             border-style: visible;
+            animation: pulse-border 1s infinite ease-in-out;
+
             
         }
         
@@ -60,6 +63,8 @@
             z-index: 999;
             border: 30px solid rgba(181, 4, 121, 0.75);
             border-bottom: 0px;
+            animation: none !important;
+
             
         }
         
@@ -69,7 +74,6 @@
         }
         
         .card:hover {
-            transform: scale(1.05);
             z-index: 2;
         }
         
@@ -121,6 +125,20 @@
             from, to { opacity: 1; }
             50% { opacity: 0; }
         }
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                border-radius: 20px;
+            }
+            50% {
+                box-shadow: 0 0 10px 2px rgba(181, 4, 121, 1);
+                border-radius: 26px;
+            }
+            100% {
+                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                border-radius: 20px;
+            }
+        }
         /* --- FINE NUOVI STILI --- */
         #back-button {
             position: fixed;
@@ -145,11 +163,11 @@
         #back-button:hover {
             background-color: rgba(181, 4, 121, 1);
         }    
-
-            @keyframes bounce {
-                0%, 100% { transform: translateY(-20%) translateX(0); }
-                50% { transform: translateY(-20%) translateX(12px); }
-            }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-20%) translateX(0); }
+            50% { transform: translateY(-20%) translateX(12px); }
+        }
     </style>
 </head>
 <a href="./index.html" id="back-button"> ⬅ </a>
