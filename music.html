@@ -231,22 +231,29 @@
             const backButton = document.getElementById('back-button');
             const mainContent = document.getElementById('main-content');
             const body = document.body; // <-- NUOVO: Selezioniamo il body
+            const cards = document.querySelectorAll('.card');
+            const captionDisplay = document.getElementById('caption-display');
+            let typingTimeout = null;
             
             backButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 
-                // MODIFICATO: Applichiamo il fade-out sia al contenuto che allo sfondo
-                mainContent.classList.add('fade-out');
-                body.classList.add('fade-out-background'); // <-- NUOVO
-                
-                setTimeout(() => {
-                    window.location.href = './index.html';
-                }, 400); // La durata corrisponde alla transizione CSS
+                // Se c'è una card in fullscreen, la chiudiamo come se fosse stata cliccata
+                const fullscreenCard = document.querySelector('.card.fullscreen');
+                if (fullscreenCard) {
+                    fullscreenCard.click();
+                } else {
+                    // Altrimenti procediamo con il fade-out e il redirect
+                    mainContent.classList.add('fade-out');
+                    body.classList.add('fade-out-background');
+                    
+                    setTimeout(() => {
+                        window.location.href = './index.html';
+                    }, 400);
+                }
             });
             
-            const cards = document.querySelectorAll('.card');
-            const captionDisplay = document.getElementById('caption-display');
-            let typingTimeout = null;
+            
             
             function typeWriter(element, text, i = 0) {
                 element.classList.add('typing');
