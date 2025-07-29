@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <link rel="preload" href="bg_logo.png" as="image">
+
     <meta charset="UTF-8">
     <title>Music</title>
     <style>
@@ -216,8 +218,8 @@
     <div id="main-content">    
         <div class="cards">
             <!-- Aggiunto data-text per contenere il testo della caption -->
-            <img src="cortese.jpg" alt="Cover 1" class="card" data-text="Caption per Cortese  Canta Battisti/nSTART h 22:00." />
-            <img src="laco.jpg" alt="Cover 2" class="card" data-text="Caption per Laco/nStart h 20:00" />
+            <img loading="lazy" src="cortese.jpg" alt="Cover 1" class="card" data-text="Caption per Cortese  Canta Battisti/nSTART h 22:00." />
+            <img loading="lazy" src="laco.jpg" alt="Cover 2" class="card" data-text="Caption per Laco/nStart h 20:00" />
         </div>
         
         <!-- Elemento separato per mostrare la caption -->
