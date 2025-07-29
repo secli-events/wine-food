@@ -2,8 +2,8 @@
 <html lang="it">
 <head>
     <link rel="preload" href="bg_logo.png" as="image">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <meta charset="UTF-8">
     <title>Music</title>
     <style>
@@ -15,7 +15,6 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            overflow: hidden;
             /* Rimosso lo sfondo da qui per spostarlo nello pseudo-elemento */
             background-color: rgb(83, 0, 116); /* Aggiunto un colore di fallback che si vedrà durante il fade-out */
             font-family: sans-serif;
@@ -113,29 +112,28 @@
         
         /* --- NUOVI STILI PER LA CAPTION --- */
         #caption-display {
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
+            margin: 0.9em auto 0 auto; /* distanza sopra e centrato orizzontalmente */
             color: black;
+            width: 63vw;
+            
             font-weight: bold;
             font-size: 5vw;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
             z-index: 1000;
             opacity: 0;
+            border-style: visible;
+            
+            outline: 30px solid rgba(181, 4, 121, 1); /* 👈 bordo esterno */
+            
             pointer-events: none;
             transition: opacity 0.5s ease;
-            white-space: pre-wrap; /* permette \n e a capo */
+            white-space: pre-wrap;
             text-align: center;
-            margin-top: 14px;
-            width: 70vw; /* 👈 limita la larghezza su schermi piccoli */
             padding: 10px 20px;
             box-sizing: border-box;
-            
             background-color: rgba(181, 4, 121, 0.75); 
-            border-radius: 12px;
-            backdrop-filter: blur(4px); /* effetto vetro opaco (opzionale) */
+            backdrop-filter: blur(4px);
         }
-        
         
         #caption-display.visible {
             opacity: 1;
@@ -184,23 +182,25 @@
         
         /* --- FINE NUOVI STILI --- */
         #back-button {
+            scale: 2;
             position: fixed;
+            font-size: 16pt;
             bottom: 30px;
             left: 30px;
-            padding: 15px 20px;
-            font-size: 3.9em;
+            padding: 6px 16px;
             font-weight: bold;
             background-color: rgba(181, 4, 121, 1);
             color: white;
-            border: 15px solid rgba(181, 4, 121, 1);
-            border-radius: 100px;
+            border: 5px solid rgba(181, 4, 121, 1);
+            border-radius: 200px;
             cursor: pointer;
             z-index: 1000;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: background-color 0.3s ease;
             font-family: 'Playwrite AU QLD', serif;
             animation: bounce 1s infinite;
-            text-decoration: none;
+            transition: opacity 0.4s ease;
+            
         }
         
         #back-button:hover {
@@ -217,7 +217,7 @@
 <body class="fade-in">
     <div id="main-content">    
         <a href="#" id="back-button"> <i class="fa fa-arrow-left" aria-hidden="true"></i>
-</a>
+        </a>
         <div class="cards">
             <!-- Aggiunto data-text per contenere il testo della caption -->
             <img loading="lazy" src="cortese.jpg" alt="Cover 1" class="card" data-text="Caption per Cortese  Canta Battisti/nSTART h 22:00." />
@@ -259,7 +259,7 @@
                     
                     element.innerHTML += char;
                     
-                    typingTimeout = setTimeout(() => typeWriter(element, text, i + 1), 75);
+                    typingTimeout = setTimeout(() => typeWriter(element, text, i + 1), 50);
                 } else {
                     element.classList.remove('typing');
                 }
@@ -299,5 +299,7 @@
             
         </script>
     </div>
+    <div style="height: 50vh; visibility: hidden;" class="placeholder"></div>
+    
 </body>
 </html>
