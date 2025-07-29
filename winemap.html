@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <link rel="preload" href="bg_logo.png" as="image">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta charset="UTF-8">
+    <title>Music</title>
+    <style>
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            /* Rimosso lo sfondo da qui per spostarlo nello pseudo-elemento */
+            background-color: rgb(83, 0, 116); /* Aggiunto un colore di fallback che si vedrà durante il fade-out */
+            font-family: sans-serif;
+            position: relative; /* Necessario per il corretto z-index dello pseudo-elemento */
+        }
+        
+        /* --- NUOVO: Sfondo nello pseudo-elemento --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg_logo.png');
+            background-repeat: no-repeat;
+            background-size: 150% auto;
+            background-position: center top;
+            background-attachment: fixed;
+            z-index: -1; /* Mette lo sfondo dietro a tutto il contenuto */
+            opacity: 1; /* Stato iniziale */
+            transition: opacity 0.5s ease; /* Transizione per il fade-out */
+        }
+        
+        /* --- NUOVO: Classe per attivare il fade-out dello sfondo --- */
+        body.fade-out-background::before {
+            opacity: 0;
+        }
+        /* --- FINE NUOVE REGOLE PER LO SFONDO --- */
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        
+        /* --- FINE NUOVI STILI --- */
+        #back-button {
+            scale: 2;
+            position: fixed;
+            font-size: 16pt;
+            bottom: 30px;
+            left: 30px;
+            padding: 6px 16px;
+            font-weight: bold;
+            background-color: rgba(181, 4, 121, 1);
+            color: white;
+            border: 5px solid rgba(181, 4, 121, 1);
+            border-radius: 200px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+            font-family: 'Playwrite AU QLD', serif;
+            animation: bounce 1s infinite;
+            transition: opacity 0.4s ease;
+            
+        }
+        
+        #back-button:hover {
+            background-color: rgba(181, 4, 121, 1);
+        }    
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-20%) translateX(0); }
+            50% { transform: translateY(-20%) translateX(12px); }
+        }
+        #coming-soon {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8vw;
+            color:  rgba(181, 4, 121, 1);
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 10;
+            width: 80vw;
+            font-family: 'Playwrite AU QLD', serif;
+            pointer-events: none; /* Impedisce interazione con la scritta */
+            opacity: 0;
+            animation: fadeInComing 1s ease-out 0.2s forwards;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        #coming-soon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: rgba(181, 4, 121, 0.7);
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: pulse-aura 3s infinite ease-in;
+        }
+        @keyframes fadeInComing {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        @keyframes pulse-aura {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+            25% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+            75% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="fade-in">
+    <div id="main-content">  
+        <div id="coming-soon">COMING SOON</div>
+        
+        <a href="#" id="back-button"> <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </a>
+        
+        <script>
+            const backButton = document.getElementById('back-button');
+            const mainContent = document.getElementById('main-content');
+            const body = document.body; // <-- NUOVO: Selezioniamo il body
+            
+            backButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                mainContent.classList.add('fade-out');
+                body.classList.add('fade-out-background');
+                
+                setTimeout(() => {
+                    window.location.href = './index.html';
+                }, 400);
+            }
+            );
+            
+            
+            
+        </script>
+    </div>
+    <div style="height: 50vh; visibility: hidden;" class="placeholder"></div>
+    
+</body>
+</html>

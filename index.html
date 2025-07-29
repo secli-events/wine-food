@@ -52,6 +52,7 @@
 
         }
         .background {
+            background-repeat: no-repeat;
             background-position: center top;
             position: fixed;
             top: 0; left: 0;
@@ -149,8 +150,8 @@
             transform: translateX(-50%);
             font-size: 16pt;
             opacity: 0;
-            cursor: pointer;
-            z-index: 100;
+            pointer-events: none;
+
         }
         #scroll-indicator {
             position: fixed;
@@ -162,7 +163,6 @@
             color: white;
             border: 8px solid rgba(181, 4, 121, 1);
             border-radius: 200px;
-            cursor: pointer;
             z-index: 1000;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: background-color 0.3s ease;
@@ -173,6 +173,8 @@
         }
         .scroll-indicator.visible {
             opacity: 1;
+            cursor: pointer;
+            pointer-events: auto;
             transition: opacity 0.4s ease;
 
         }
@@ -194,10 +196,10 @@
     <div class="content" id="content">
         <div class="buttons">
             <!-- MODIFICATO: Rimosso location.href e aggiunto un attributo data-href per la destinazione -->
-            <button data-href="programma.html">
+            <button data-href="winemap.html">
                 <span class="icon">🍷</span> Wine Map <span class="icon">🍷</span>
             </button>
-            <button data-href="espositori.html">
+            <button data-href="foodmap.html">
                 <span class="icon">🍔</span> Food Map <span class="icon">🍔</span>
             </button>
             <button data-href="music.html">
