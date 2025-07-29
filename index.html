@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -145,21 +146,35 @@
         
         .scroll-indicator {
             position: fixed;
-            bottom: 20px;
-            left: 90%;
             transform: translateX(-50%);
-            font-size: 2.5em;
-            color: black;
+            font-size: 2.2em;
             opacity: 0;
-            pointer-events: auto;
             cursor: pointer;
             z-index: 100;
+        }
+        #scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 90%;
+            padding: 2px 18px;
+            font-weight: bold;
+            background-color: rgba(181, 4, 121, 1);
+            color: white;
+            border: 8px solid rgba(181, 4, 121, 1);
+            border-radius: 200px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+            font-family: 'Playwrite AU QLD', serif;
             animation: bounce 1s infinite;
             transition: opacity 0.4s ease;
+
         }
-        
         .scroll-indicator.visible {
             opacity: 1;
+            transition: opacity 0.4s ease;
+
         }
         
         @keyframes bounce {
@@ -169,7 +184,8 @@
     </style>
 </head>
 <body>
-    <div id="scroll-indicator" class="scroll-indicator">⬇</div>
+    <div id="scroll-indicator" class="scroll-indicator"><i class="fa fa-arrow-down" aria-hidden="true"></i>
+</div>
     
     <!-- Sfondo -->
     <div class="background" id="bg"></div>
