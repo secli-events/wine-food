@@ -171,6 +171,8 @@
         }
         
         .indexpage .buttons {
+                        opacity: 1;
+            transform: translateY(0);
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -180,6 +182,8 @@
         }
         
         .indexpage .buttons button {
+                        opacity: 1;
+            transform: translateY(0);
             padding: 10px 14px;
             font-size: 1.1em;
             display: flex;
@@ -533,16 +537,16 @@
                 </div>
             </div>
             <footer class="footer">
-                <img src="assets/f21.png" alt="F21" class="fade-in"/>
+                <img src="assets/f21.png" alt="F21" class="visible"/>
             </footer>
             <footer class="footer">
-                <img src="assets/f21.png" alt="F21" class="fade-in" />
+                <img src="assets/f21.png" alt="F21" class="visible" />
             </footer>
             <footer class="footer">
-                <img src="assets/f21.png" alt="F21" class="fade-in"/>
+                <img src="assets/f21.png" alt="F21" class="visible"/>
             </footer>
             <footer class="footer">
-                <img src="assets/f21.png" alt="F21" class="fade-in"/>
+                <img src="assets/f21.png" alt="F21" class="visible"/>
             </footer>
         </div>
         
@@ -635,36 +639,26 @@
                 // Azione da eseguire quando il bottone viene cliccato
                 
                 showpage(music, [index,foodmap, winemap])
-            }, 710)
+            }, 100)
             winebutton.addEventListener("click", function () {
                 // Azione da eseguire quando il bottone viene cliccato
                 
                 showpage(winemap, [index,foodmap, music])
-            }, 710)
+            }, 100)
             foodbutton.addEventListener("click", function () {
                 // Azione da eseguire quando il bottone viene cliccato
                 
                 showpage(foodmap, [index,music, winemap])
-            }, 710)
+            }, 100)
             
             
         });
         
         
         // Logica sponsor
-        const faders = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        faders.forEach(el => observer.observe(el));
         
         const scrollIndicator = document.getElementById('scroll-indicator');
+        
         function updateScrollIndicator() {
             const scrollable = document.documentElement.scrollHeight > window.innerHeight;
             const scrolled = window.scrollY > 30;
