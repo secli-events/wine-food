@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Seclì Wine & Food</title>
@@ -17,7 +17,7 @@
             box-sizing: border-box;
         }
         #bg {
-            background-image: url('assets/bg_logo.png');
+            background-image: url('assets/bg_new.png');
             background-repeat: no-repeat;
             background-size: 150% auto;
             background-position: center top;
@@ -171,38 +171,72 @@
         }
         
         .indexpage .buttons {
-                        opacity: 1;
+            opacity: 1;
             transform: translateY(0);
             display: flex;
             flex-direction: column;
             width: 100%;
-            max-width: 250px;
+            max-width: 80vw;
             padding-top: 55vw;
             gap: 20px;
         }
         
         .indexpage .buttons button {
-                        opacity: 1;
+            opacity: 1;
             transform: translateY(0);
             padding: 10px 14px;
             font-size: 1.1em;
             display: flex;
-            align-items: center;
             gap: 8px;
-            justify-content: center;
+            justify-content: left;
             cursor: pointer;
             font-weight: bold; 
-            background-color: rgba(181, 4, 121, 0.75); 
+            background-color: rgba(130, 42, 56, 0.85); 
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 16px;
             transition: background-color 0.25s ease;
-            font-family: 'Playwrite AU QLD', serif;
         }
         
         .indexpage .buttons button:hover {
-            background-color: rgba(181, 4, 121, 1); 
+            background-color: rgba(130, 42, 56, 1); 
             transition: background-color 0.1s ease-in;
+        }
+        .map-button {
+            gap: 12px;
+            padding: 12px 16px;
+            border: none;
+            align-items: center;  /* 🔥 Questa proprietà centra verticalmente tutto */
+            
+            background-color: #fdfaf5;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-family: "Inter", sans-serif;
+            text-align: left;
+        }
+        
+        
+        .button-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            font-family: "Nata Sans", sans-serif;
+            
+            
+        }
+        
+        .button-text .title {
+            font-size: 6.2vw;
+            font-weight: 600;
+            color: white;
+            font-weight: 700
+        }
+        
+        .button-text .bottomtext {
+            font-size: 3.5vw;
+            color:  rgb(240, 212, 212);
         }
         
         .indexpage .icon {
@@ -252,7 +286,6 @@
             z-index: 1000;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: background-color 0.3s ease;
-            font-family: 'Playwrite AU QLD', serif;
             animation: bounce 1s infinite;
             transition: opacity 0.4s ease;
             
@@ -298,9 +331,8 @@
             object-fit: cover;
             transform-origin: center center; 
             border-style: visible;
-            animation: pulse-border 1s infinite ease-in-out;
-            
-            
+            box-shadow: 4px 4px 4px 4px rgb(145, 145, 145);
+            border-radius: 20px;             
         }
         
         .music .card.fullscreen {
@@ -313,6 +345,8 @@
             border: 4vw solid rgba(181, 4, 121, 0.75);
             border-bottom: 0px;
             animation: none !important;
+            box-shadow: none;
+            border-radius: 0;   
             
             
         }
@@ -384,7 +418,6 @@
             z-index: 1000;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: background-color 0.3s ease;
-            font-family: 'Playwrite AU QLD', serif;
             animation: bounce 1s infinite;
             transition: opacity 0.4s ease;
         }
@@ -469,8 +502,14 @@
             filter: blur(50px);
             animation: pulse-aura 3s infinite ease-in;
         }
-
-         /* WINE CSS --------------------------------------------------------------- */
+        .button-icon {
+            height: 11vw;
+            width: auto;           
+            margin-right:3.7vw ;
+            margin-left:1.5vw ;
+            object-fit: contain;
+        }
+        /* WINE CSS --------------------------------------------------------------- */
         /* WINE CSS --------------------------------------------------------------- */
         /* WINE CSS --------------------------------------------------------------- */
         
@@ -525,14 +564,26 @@
             <div class="content" id="content">
                 <div class="buttons">
                     <!-- MODIFICATO: Rimosso location.href e aggiunto un attributo data-href per la destinazione -->
-                    <button id="towinemap">
-                        <span class="icon">🍷</span> Wine Map <span class="icon">🍷</span>
+                    <button id="towinemap" class="map-button">
+                        <img class="button-icon" src="assets/wine_logo.png" alt="Wine" />
+                        <div class="button-text">
+                            <span class="title">Wine Map</span>
+                            <span class="bottomtext">Scopri i vini in degustazione.</span>
+                        </div>
                     </button>
-                    <button id="tofoodmap">
-                        <span class="icon">🍔</span> Food Map <span class="icon">🍔</span>
+                    <button id="tofoodmap" class="map-button">
+                        <img class="button-icon" src="assets/food_logo.png" alt="Food" />
+                        <div class="button-text">
+                            <span class="title">Food Map</span>
+                            <span class="bottomtext">Scopri la nostra food selection.</span>
+                        </div>
                     </button>
-                    <button id="tomusic">
-                        <span class="icon">🎶</span> Live Music <span class="icon">🎶</span>
+                    <button id="tomusic" class="map-button">
+                        <img class="button-icon" src="assets/music_logo.png" alt="Music" />
+                        <div class="button-text">
+                            <span class="title">Live Music</span>
+                            <span class="bottomtext">Scopri i nostri artisti.</span>
+                        </div>
                     </button>
                 </div>
             </div>
