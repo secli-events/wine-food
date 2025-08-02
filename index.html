@@ -177,7 +177,6 @@
             flex-direction: column;
             width: 100%;
             max-width: 80vw;
-            padding-top: 55vw;
             gap: 20px;
         }
         
@@ -547,6 +546,11 @@
         .winemap.fade-out-background::before {
             opacity: 0;
         }
+        .hbox {
+            height: 65vw;
+            visibility: none;
+            overflow-x: hidden;
+        }
     </style>
 </head>
 
@@ -562,6 +566,7 @@
             
             <!-- Contenuto -->
             <div class="content" id="content">
+                <div class="hbox"></div>
                 <div class="buttons">
                     <!-- MODIFICATO: Rimosso location.href e aggiunto un attributo data-href per la destinazione -->
                     <button id="towinemap" class="map-button">
