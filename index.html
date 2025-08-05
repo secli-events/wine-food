@@ -448,7 +448,7 @@
             background-color: rgba(181, 4, 121, 1);
         }    
         
-
+        
         
         /* FOOD CSS --------------------------------------------------------------- */
         /* FOOD CSS --------------------------------------------------------------- */
@@ -676,8 +676,10 @@
             border-radius: 10px;
             border: solid 10px rgba(130, 42, 56, 1); 
             z-index: 200;
-          position: relative; /* o absolute o fixed, a seconda del comportamento desiderato */
-
+            position: relative; /* o absolute o fixed, a seconda del comportamento desiderato */
+            margin-bottom: 100px; /* crea spazio vuoto sotto */
+            
+            
         }
         #futuraFooter {
             position: fixed;
@@ -688,6 +690,7 @@
             gap: 10px;
             z-index: 1000;
             background: transparent; /* assicurati che sia invisibile */
+            
         }
         
         #futuraFooter img {
@@ -707,7 +710,10 @@
             position: fixed;
             z-index: 0;
         }
-        
+        .spacer-box {
+            height: 2vw;
+            background: transparent; /* oppure rgba(0, 0, 0, 0) */
+        }
         
     </style>
 </head>
@@ -831,7 +837,7 @@
                     
                     <a style="display: block; text-align: center;">
                         <br><br>
-                         __________________
+                        __________________
                         <br><br>
                         Associazione culturale FUTURA 21<br>
                         Via FOGAZZARO n. 3<br>
@@ -842,7 +848,10 @@
                         
                         
                     </div>
+                    <div class="spacer-box"></div>
+                    
                     <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                    
                 </div>
                 <div id="futuraFooter">
                     <a href="https://instagram.com/futura_21" target="_blank">
