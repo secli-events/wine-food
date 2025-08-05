@@ -3,6 +3,7 @@
 <html lang="it">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
@@ -376,7 +377,7 @@
             z-index: 1000;
             opacity: 0;
             border-style: visible;
-                        
+            
             pointer-events: none;
             transition: opacity 0.5s ease;
             white-space: pre-wrap;
@@ -548,11 +549,28 @@
             overflow-x: hidden;
         }
         .map {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: opacity 0.5s ease; /* Transizione per il fade-out */
-}
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.5s ease; /* Transizione per il fade-out */
+        }
+        .map-container {
+            width: 100%;
+            overflow: hidden; /* Nasconde le parti dell'immagine che escono dai bordi */
+            cursor: grab; /* Indica che l'area è "afferrabile" */
+        }
+        
+        .map-container:active {
+            cursor: grabbing; /* Cambia il cursore durante il trascinamento */
+        }
+        
+        /* Assicurati che l'immagine parta adattata */
+        .map-container .map {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform-origin: 0 0; /* Imposta il punto di origine per lo zoom */
+        }
     </style>
 </head>
 
@@ -626,24 +644,22 @@
         </div>
         
         <div class="winemap" id="winemap">
-            <div id="winemap-main-content">  
-                <img src="assets/winemap.jpg" alt="Winemap" class="map">
-                
-                <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                </a>
-                
-                
+            <div id="winemap-main-content">
+                <!-- Contenitore per lo zoom/pan -->
+                <div class="map-container">
+                    <img src="assets/winemap.jpg" alt="Winemap" class="map">
+                </div>
+                <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
             </div>
         </div>
         
         <div class="foodmap" id="foodmap">
-            <div id="foodmap-main-content">  
-        <img src="assets/foodmap.jpg" alt="Foodmap" class="map">
-                
-                <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                </a>
-                
-                
+            <div id="foodmap-main-content">
+                <!-- Contenitore per lo zoom/pan -->
+                <div class="map-container">
+                    <img src="assets/foodmap.jpg" alt="Foodmap" class="map">
+                </div>
+                <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
             </div>
         </div>
         
@@ -885,7 +901,35 @@
         // CODICE WINE /////////////////////////////////////////
         // CODICE WINE /////////////////////////////////////////
         // CODICE WINE /////////////////////////////////////////
+        const wineMapImage = document.querySelector('#winemap .map');
+        const foodMapImage = document.querySelector('#foodmap .map');
+        const wineMapContainer = document.querySelector('#winemap .map-container');
+        const foodMapContainer = document.querySelector('#foodmap .map-container');
         
+        // Opzioni comuni per entrambe le mappe
+        const panzoomOptions = {
+            maxScale: 5,      // Limita lo zoom massimo
+            minScale: 1,      // Limita lo zoom minimo (1 = dimensione originale)
+            canvas: true,     // Fondamentale: abilita la modalità "canvas" per il pan corretto
+            contain: 'outside' // Impedisce di "perdere" l'immagine trascinandola
+        };
+        
+        // Inizializza Panzoom per entrambe le mappe
+        const panzoomWine = Panzoom(wineMapImage, panzoomOptions);
+        const panzoomFood = Panzoom(foodMapImage, panzoomOptions);
+        
+        // Abilita lo zoom con la rotellina del mouse
+        wineMapContainer.addEventListener('wheel', panzoomWine.zoomWithWheel);
+        foodMapContainer.addEventListener('wheel', panzoomFood.zoomWithWheel);
+        
+        // Bonus: Resetta lo zoom quando si torna alla pagina principale
+        wine_back_button.addEventListener('click', () => {
+            panzoomWine.reset();
+        });
+        
+        food_back_button.addEventListener('click', () => {
+            panzoomFood.reset();
+        });
     </script>
 </body>
 </html>
