@@ -2,6 +2,19 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+      <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('beforeunload', function () {
+      window.scrollTo(0, 0);
+    });
+
+    window.addEventListener('load', function () {
+      setTimeout(() => window.scrollTo(0, 0), 1);
+    });
+  </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
     
@@ -663,42 +676,27 @@
             border-radius: 10px;
             border: solid 10px rgba(130, 42, 56, 0.85); 
         }
-        #futuraFooter {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            z-index: 1000;
-            background: transparent; /* sfondo trasparente */
-            padding: 0;
-            border-radius: 0;
-            box-shadow: none; /* niente ombra */
-        }
-        
-        .footer-text {
-            font-weight: bold;
-            font-size: 16px;
-            color: #000; /* o il colore del tuo tema */
-        }
-        
-        .footer-icons {
-            display: flex;
-            justify-content: flex-end; /* <--- sposta le icone a destra */
-            gap: 10px;
-            width: 100%;
-        }
-        .footer-icons img {
-            scale: 1.2;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        
-        .footer-icons img:hover {
-            transform: scale(1.1);
-        }
+#futuraFooter {
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  display: flex;
+  flex-direction: column; /* disposizione verticale */
+  gap: 10px;
+  z-index: 1000;
+  background: transparent; /* assicurati che sia invisibile */
+}
+
+#futuraFooter img {
+    scale: 1.2;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#futuraFooter img:hover {
+  transform: scale(1.1);
+}
+
         
         
         
@@ -806,29 +804,27 @@
                 
                 <div id="futura21text">
                     
-                    Futura 21, operante dal 2011, è un’associazione culturale no-profit nata a Seclì, nel cuore del Salento, con una visione chiara e condivisa: creare bellezza, generare comunità e valorizzare il territorio attraverso Cultura, Musica, Arte e Sport.
+                    Futura 21, operante dal 2011, è un’associazione culturale no-profit nata a Seclì, nel cuore del Salento, con una visione chiara e condivisa: creare bellezza, generare comunità e valorizzare il territorio attraverso Cultura, Musica, Arte e Sport. <br> <br>
                     
-                    Siamo ragazze e ragazzi di tutte le età: Futura 21, infatti, raccoglie energie e voci di diverse generazioni, unite dalla stessa spinta: dare nuova vita a ciò che ci circonda, trasformando i luoghi in occasioni d’incontro e condivisione.
-                    Crediamo nella forza delle idee, nella potenza della collaborazione e nel valore dell’impegno collettivo. Ogni progetto che firmiamo, dai festival musicali alle rassegne culturali, dalle attività sociali agli eventi di promozione artistica, ha un obiettivo preciso: rendere Seclì un centro vivo, attrattivo e orgoglioso delle proprie radici. Crediamo fermamente che beni culturali del nostro paese non siano solo testimonianze del passato, ma strumenti per costruire il futuro, per questo li valorizziamo, li riapriamo, li facciamo risuonare di parole, immagini e suoni.
-                    
+                    Siamo ragazze e ragazzi di tutte le età: Futura 21, infatti, raccoglie energie e voci di diverse generazioni, unite dalla stessa spinta: dare nuova vita a ciò che ci circonda, trasformando i luoghi in occasioni d’incontro e condivisione.<br> <br>
+                    Crediamo nella forza delle idee, nella potenza della collaborazione e nel valore dell’impegno collettivo. Ogni progetto che firmiamo, dai festival musicali alle rassegne culturali, dalle attività sociali agli eventi di promozione artistica, ha un obiettivo preciso: rendere Seclì un centro vivo, attrattivo e orgoglioso delle proprie radici. <br> <br> Crediamo fermamente che beni culturali del nostro paese non siano solo testimonianze del passato, ma strumenti per costruire il futuro, per questo li valorizziamo, li riapriamo, li facciamo risuonare di parole, immagini e suoni.
+                    <br> <br>
                     Futura 21 è un luogo aperto, dove ogni contributo conta e ogni partecipazione lascia il segno, un laboratorio in continua evoluzione che sfrutta la passione per trasformarla in azione cercando di dare un nuovo senso, attraverso l’arte e la cultura, all’abitare e all’appartenere.
-                    
+                    <br> <br><br> <br>
                     Futura 21 è oggi. Futura 21 siamo tutti.
                     
                 </div>
                 <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
             </div>
-            <div id="futuraFooter">
-                <div class="footer-icons">
-                    <div class="footer-text"> </div>
-                    <a href="https://instagram.com/futura_21" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" height="30">
-                    </a>
-                    <a href="https://www.facebook.com/associazionefutura21/" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30" height="30">
-                    </a>
-                </div>
-            </div>
+<div id="futuraFooter">
+  <a href="https://instagram.com/futura_21" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" height="30">
+  </a>
+  <a href="https://www.facebook.com/associazionefutura21/" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30" height="30">
+  </a>
+</div>
+
             
             
         </div>
