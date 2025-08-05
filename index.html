@@ -448,7 +448,7 @@
             background-color: rgba(181, 4, 121, 1);
         }    
         
-        
+
         
         /* FOOD CSS --------------------------------------------------------------- */
         /* FOOD CSS --------------------------------------------------------------- */
@@ -676,6 +676,9 @@
             background-color: rgba(130, 42, 56, 1);
             border-radius: 10px;
             border: solid 10px rgba(130, 42, 56, 1); 
+            z-index: 200;
+          position: relative; /* o absolute o fixed, a seconda del comportamento desiderato */
+
         }
         #futuraFooter {
             position: fixed;
@@ -698,7 +701,13 @@
             transform: scale(1.1);
         }
         
-        
+        .aboutusbgp{
+            top: 0;
+            left: 0;
+            width: 100%;
+            position: fixed;
+            z-index: 0;
+        }
         
         
     </style>
@@ -802,7 +811,7 @@
         
         <div class="chisiamo" id="chisiamo">
             <div id="chisiamo-main-content">
-                
+                <img src="assets/aboutusbg.jpg" alt="aboutusbg" class="aboutusbgp">
                 <div id="futura21text">
                     
                     Futura 21, operante dal 2013, è un’associazione culturale no-profit nata a Seclì, nel cuore del Salento, con una visione chiara e condivisa: creare bellezza, generare comunità e valorizzare il territorio attraverso Cultura, Musica, Arte e Sport.
@@ -831,6 +840,7 @@
                         C.F. 93118540751<br>
                         P.IVA 05377310759</a>
                         
+                        <br> <br><br> <br>
                         <br> <br><br> <br>
                         <br> <br><br> <br>
                         
