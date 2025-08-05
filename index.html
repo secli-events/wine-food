@@ -43,6 +43,19 @@
             pointer-events: none!important;
             transition: opacity 0.3s ease-in, width 0.3s ease-in, height 0.3s ease-in font-size 0.3s ease-in border-radius 0.3s ease-in border 0.3s ease-in color 0.3s ease-in !important;
         }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        
         @keyframes fadeInComing {
             from { opacity: 0; transform: translate(-50%, -60%); }
             to { opacity: 1; transform: translate(-50%, -50%); }
@@ -505,6 +518,32 @@
             margin-left:1.5vw ;
             object-fit: contain;
         }
+        .chisiamo-button {
+            scale: 0.8;
+            position: fixed;
+            top: 5px;
+            left: 5px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(181, 4, 121, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 999;
+            animation: pulse 1.5s infinite ease-in-out;
+            position: fixed;
+        }
+        
+        .f21-icon {
+            width: 100%;
+            height: auto;
+            position: absolute;
+        }
+        
         /* WINE CSS --------------------------------------------------------------- */
         /* WINE CSS --------------------------------------------------------------- */
         /* WINE CSS --------------------------------------------------------------- */
@@ -560,7 +599,7 @@
             overflow: hidden; /* Nasconde le parti dell'immagine che escono dai bordi */
             cursor: grab; /* Indica che l'area è "afferrabile" */
             transition: opacity 0.5s ease; /* Transizione per il fade-out */
-
+            
         }
         
         .map-container:active {
@@ -573,6 +612,42 @@
             height: auto;
             display: block;
             transform-origin: 0 0; /* Imposta il punto di origine per lo zoom */
+        }
+        /*CHISIAMO CSS */
+        
+        .chisiamo {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            /* Rimosso lo sfondo da qui per spostarlo nello pseudo-elemento */
+            position: relative; /* Necessario per il corretto z-index dello pseudo-elemento */
+            transition: opacity 0.5s ease; /* Transizione per il fade-out */
+            
+        }
+        
+        .chisiamo::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg_logo.png');
+            background-repeat: no-repeat;
+            background-size: 150% auto;
+            background-position: center top;
+            background-attachment: fixed;
+            z-index: -1; /* Mette lo sfondo dietro a tutto il contenuto */
+            opacity: 1; /* Stato iniziale */
+            transition: opacity 0.5s ease; /* Transizione per il fade-out */
+        }
+        .curved-text {
+            scale: 1.4;
+            width: 100px;
+            height: 50px;
+            font-weight: 800;
+            margin-top: 10vh; /* Avvicina il testo al bottone */
+            pointer-events: none; /* Il testo non interferisce col clic */
         }
     </style>
 </head>
@@ -589,6 +664,19 @@
             
             <!-- Contenuto -->
             <div class="content" id="content">
+                <button id="tochisiamo" class="chisiamo-button">
+                    <svg class="curved-text" viewBox="0 0 100 20">
+                        <defs>
+                            <path id="curve" d="M10,0 A55,40 0 0,0 90,0" />
+                        </defs>
+                        <text font-size="18" fill="#000">
+                            <textPath href="#curve" startOffset="50%" text-anchor="middle">
+                                ABOUT US
+                            </textPath>
+                        </text>
+                    </svg>
+                    <img class="f21-icon" src="assets/f21.png" alt="F21" />
+                </button>
                 <div class="hbox"></div>
                 <div class="buttons">
                     <!-- MODIFICATO: Rimosso location.href e aggiunto un attributo data-href per la destinazione -->
@@ -666,6 +754,13 @@
             </div>
         </div>
         
+        <div class="chisiamo" id="chisiamo">
+            <div id="chisiamo-main-content">
+                <!-- Contenitore per lo zoom/pan -->
+                prova
+                <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+            </div>
+        </div>
     </div>
     
     
@@ -699,12 +794,14 @@
         const music = document.getElementById('music');
         const foodmap = document.getElementById('foodmap');
         const winemap = document.getElementById('winemap');
+        const chisiamo = document.getElementById('chisiamo');
         //add wine e food pages
         
         const foodbutton = document.getElementById("tofoodmap");
         const musicbutton = document.getElementById("tomusic");
         const winebutton = document.getElementById("towinemap");
-        showpage(index, [music,foodmap,winemap])
+        const chisiamobutton = document.getElementById("tochisiamo");
+        showpage(index, [music,foodmap,winemap, chisiamo])
         
         
         
@@ -715,19 +812,23 @@
             musicbutton.addEventListener("click", function () {
                 // Azione da eseguire quando il bottone viene cliccato
                 
-                showpage(music, [index,foodmap, winemap])
+                showpage(music, [index,foodmap, winemap, chisiamo])
             }, 100)
             winebutton.addEventListener("click", function () {
                 // Azione da eseguire quando il bottone viene cliccato
                 
-                showpage(winemap, [index,foodmap, music])
+                showpage(winemap, [index,foodmap, music, chisiamo])
             }, 100)
             foodbutton.addEventListener("click", function () {
                 // Azione da eseguire quando il bottone viene cliccato
                 
-                showpage(foodmap, [index,music, winemap])
+                showpage(foodmap, [index,music, winemap, chisiamo])
             }, 100)
-            
+            chisiamobutton.addEventListener("click", function () {
+                // Azione da eseguire quando il bottone viene cliccato
+                
+                showpage(chisiamo, [index,music, winemap, foodmap])
+            }, 100)
             
         });
         
@@ -787,7 +888,7 @@
                 //music_main_content.classList.add('fade-out');
                 
                 setTimeout(() => {
-                    showpage(index, [music, foodmap, winemap])
+                    showpage(index, [music, foodmap, winemap,chisiamo])
                 }, 10);
             }
         });
@@ -867,7 +968,7 @@
             ////food_main_content.classList.add('fade-out');
             
             setTimeout(() => {
-                showpage(index, [music, foodmap, winemap])
+                showpage(index, [music, foodmap, winemap, chisiamo])
             }, 10);
         });
         
@@ -896,7 +997,7 @@
             //wine_main_content.classList.add('fade-out');
             
             setTimeout(() => {
-                showpage(index, [music, foodmap, winemap])
+                showpage(index, [music, foodmap, winemap, chisiamo])
             }, 10);
         });
         
@@ -933,6 +1034,29 @@
         food_back_button.addEventListener('click', () => {
             panzoomFood.reset();
         });
+        // CODICE CHI SIAMO
+        // CODICE CHI SIAMO
+        // CODICE CHI SIAMO
+        const chisiamo_back_button = document.querySelector('.chisiamo #back-button');
+        const chisiamo_main_content = document.getElementById('chisiamo-main-content');
+        
+        chisiamo_back_button.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Se c'è una card in fullscreen, la chiudiamo come se fosse stata cliccata
+            const fullscreenCard = document.querySelector('.card.fullscreen');
+            if (fullscreenCard) {
+                fullscreenCard.click();
+            } else {
+                // Altrimenti procediamo con il fade-out e il redirect
+                //music_main_content.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    showpage(index, [music, foodmap, winemap,chisiamo])
+                }, 10);
+            }
+        });
+        
     </script>
 </body>
 </html>
