@@ -593,12 +593,13 @@
             width: 100%;         /* Larghezza piena */
             border: none;        /* Nessun bordo */
             z-index: 100;
+            margin-bottom: 20px; /* spazio tra legenda e mappa */
+
         }
         .map {
-            padding-top:10vh;
+            padding-top:40vw;
             width: 100%;
             height: auto;
-            display: block;
             transition: opacity 0.5s ease; /* Transizione per il fade-out */
         }
         .map-container {
@@ -724,7 +725,7 @@
         </div>
         
         <div class="winemap" id="winemap">
-                    <img src="assets/wineleg.jpg" alt="Wineleg" class="legend">
+            <img src="assets/wineleg.jpg" alt="Wineleg" class="legend">
 
             <div id="winemap-main-content">
                 <!-- Contenitore per lo zoom/pan -->
