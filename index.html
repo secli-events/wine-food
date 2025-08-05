@@ -527,8 +527,8 @@
             height: 80px;
             border-radius: 50%;
             border: none;
-            background-color: rgba(181, 4, 121, 1);
             display: flex;
+            background-color: transparent;
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -641,14 +641,6 @@
             opacity: 1; /* Stato iniziale */
             transition: opacity 0.5s ease; /* Transizione per il fade-out */
         }
-        .curved-text {
-            scale: 1.4;
-            width: 100px;
-            height: 50px;
-            font-weight: 800;
-            margin-top: 10vh; /* Avvicina il testo al bottone */
-            pointer-events: none; /* Il testo non interferisce col clic */
-        }
     </style>
 </head>
 
@@ -665,16 +657,6 @@
             <!-- Contenuto -->
             <div class="content" id="content">
                 <button id="tochisiamo" class="chisiamo-button">
-                    <svg class="curved-text" viewBox="0 0 100 20">
-                        <defs>
-                            <path id="curve" d="M10,0 A55,40 0 0,0 90,0" />
-                        </defs>
-                        <text font-size="18" fill="#000">
-                            <textPath href="#curve" startOffset="50%" text-anchor="middle">
-                                ABOUT US
-                            </textPath>
-                        </text>
-                    </svg>
                     <img class="f21-icon" src="assets/f21.png" alt="F21" />
                 </button>
                 <div class="hbox"></div>
