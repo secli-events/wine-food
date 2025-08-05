@@ -587,6 +587,14 @@
             visibility: none;
             overflow-x: hidden;
         }
+        .legend {
+            position: fixed;     /* Fissa in alto */
+            top: 0;              /* Nessun margine superiore */
+            left: 0;             /* Nessun margine a sinistra */
+            width: 100%;         /* Larghezza piena */
+            border: none;        /* Nessun bordo */
+            z-index: 100;
+        }
         .map {
             padding-top:10vh;
             width: 100%;
@@ -717,6 +725,8 @@
         </div>
         
         <div class="winemap" id="winemap">
+                    <img src="assets/wineleg.jpg" alt="Wineleg" class="legend">
+
             <div id="winemap-main-content">
                 <!-- Contenitore per lo zoom/pan -->
                 <div class="map-container">
@@ -727,6 +737,8 @@
         </div>
         
         <div class="foodmap" id="foodmap">
+                    <img src="assets/foodleg.jpg" alt="Foodleg" class="legend">
+
             <div id="foodmap-main-content">
                 <!-- Contenitore per lo zoom/pan -->
                 <div class="map-container">
