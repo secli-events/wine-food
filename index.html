@@ -46,7 +46,7 @@
         * {
             box-sizing: border-box;
         }
-        #bg {
+        body {
             background-image: url('assets/bg_new.png');
             background-repeat: no-repeat;
             background-size: 100% auto;
@@ -1083,6 +1083,8 @@
             window.addEventListener('load', updateScrollIndicator);
             window.addEventListener('resize', updateScrollIndicator);
             window.addEventListener('scroll', updateScrollIndicator);
+            setInterval(updateScrollIndicator, 500); // 1000 ms = 1 secondo
+
             scrollIndicator.addEventListener('click', () => {
                 
                 
