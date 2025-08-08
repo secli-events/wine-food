@@ -11,17 +11,7 @@
         
         
         //FORZA LO SCROLL A 0
-        let lastTouchTime = 0;
-        document.addEventListener('touchend', function (event) {
-            const now = new Date().getTime();
-            if (now - lastTouchTime <= 300) {
-                event.preventDefault();
-            }
-            lastTouchTime = now;
-        }, { passive: false });
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
+
         
         window.addEventListener('beforeunload', function () {
             window.scrollTo(0, 0);
@@ -58,7 +48,6 @@
             padding: 0;
             font-family: sans-serif;
             overflow-x: hidden;
-            overflow-y: auto;   
             background-color: #ffeeef;
         }
         .hidee {
@@ -408,6 +397,7 @@
             /* background-color: rgb(83, 0, 116); */
             font-family: sans-serif;
             position: relative; /* Necessario per il corretto z-index dello pseudo-elemento */
+            overflow-y: hidden;
         }
         
         
@@ -834,7 +824,7 @@
             </div>
             
             <div id="startext">
-                9 AGOSTO - START 21:30 
+                9 AGOSTO - START 21:00
             </div>  
             <div id="sponsortext">
                 I NOSTRI MAIN SPONSOR
