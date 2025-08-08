@@ -49,7 +49,7 @@
         #bg {
             background-image: url('assets/bg_new.png');
             background-repeat: no-repeat;
-            background-size: 150% auto;
+            background-size: 100% auto;
             background-position: center top;
             background-attachment: fixed;
         }
@@ -153,16 +153,25 @@
         }
         /* --- INDEX CSS --------------------------------------------------------------- */
         /* --- INDEX CSS --------------------------------------------------------------- */
+        /* Mobile-first: 2 sponsor per riga, centrati */
+        .sponsors {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* due colonne */
+            gap: 2vw;                              /* spazio tra card */
+            justify-items: center;                  /* centra il contenuto di ogni colonna */
+        }
+        
         .sponsor-card {
-            background-color:  rgba(130, 42, 56, 0.85); 
-            border-radius: 15px;      /* bordo smussato */
-            padding: 15px;            /* spazio interno */
-            text-align: center;       /* centra immagine e testo */
-            display: inline-block;    /* adatta la card al contenuto */
+            background-color: rgba(130, 42, 56, 0.85);
+            border-radius: 15px;
+            text-align: center;
+            width: 100%;            /* occupa tutta la colonna */
+            max-width: 45vw;       /* opzionale: limita la larghezza su telefoni più larghi */
+            box-sizing: border-box;
         }
         
         .sponsor-card img {
-            max-width: 100%;          /* mantiene proporzioni */
+            width: 100%;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -171,9 +180,10 @@
         .sponsor-name {
             margin-top: 8px;
             font-weight: bold;
-            font-size: 4vw;
+            font-size: clamp(13px, 4vw, 18px); /* leggibile su vari telefoni */
             color: white;
         }
+        
         
         #startext {
             transform: scaleY(1.3); /* 1 = originale, >1 allunga, <1 schiaccia */
@@ -332,19 +342,6 @@
         
         .indexpage .icon {
             font-size: 1.4em;
-        }
-        .indexpage .footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .indexpage .footer img {
-            max-width: 60vw;
-            object-fit: contain;
-            filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
         }
         .indexpage .fade-in {
             opacity: 0;
@@ -842,28 +839,36 @@
             <div id="sponsortext">
                 I NOSTRI MAIN SPONSOR
             </div>
-            <footer class="footer">
+            <div class="sponsors">
+                
                 <div class="sponsor-card">
                     <img src="assets/sponsor_1.jpg" alt="F21" class="visible"/>
                     <p class="sponsor-name">RESTA<br>Allestimenti Isotermici</p>
                 </div>
-            </footer>
-            
-            <footer class="footer">
+                
+                
+                
                 <div class="sponsor-card">
                     <img src="assets/sponsor_2.jpg" alt="F21" class="visible"/>
                     <p class="sponsor-name">SAPHIR<br>Bed and Breakfast</p>
                 </div>
-            </footer>
-            
-            <footer class="footer">
+                
+                
+                
+                <div class="sponsor-card">
+                    <img src="assets/sponsor_3.jpg" alt="F21" class="visible"/>
+                    <p class="sponsor-name">Start Point<br>gruppoautosat.com</p>
+                </div>
+                
+                
+                
                 <div class="sponsor-card">
                     <img src="assets/sponsor_4.jpg" alt="F21" class="visible"/>
                     <p class="sponsor-name">TUNDO<br>Costruzioni Ecologia Trasporti</p>
                 </div>
-            </footer>
-            
-            
+                
+                
+            </div>
             <!-- MUSIC 
             -->
         </div>
