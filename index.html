@@ -364,22 +364,22 @@
             pointer-events: none;
             
         }
-        .indexpage #scroll-indicator {
+        .indexpage #scroll-indicator{
             position: fixed;
             bottom: 2vh;
             left: 94%;
-            padding: 10px 10px;
-            font-weight: bold;
+            font-size: 4vw;
+            display: flex;              /* abilita flexbox */
+            justify-content: center;    /* centro orizzontale */
+            align-items: center;        /* centro verticale */            width: 10vw;       /* diametro proporzionale alla larghezza schermo */
+            height: 10vw;      /* stesso valore per mantenere il cerchio */
             background-color: rgba(181, 4, 121, 1);
-            color: white;
-            border: 8px solid rgba(181, 4, 121, 1);
-            border-radius: 200px;
+            border-radius: 50%; /* cerchio perfetto */
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: background-color 0.3s ease;
+            color: white;
             animation: bounce 1s infinite;
             transition: opacity 0.4s ease;
-            
         }
         .indexpage .scroll-indicator.visible {
             opacity: 1;
