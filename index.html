@@ -4,8 +4,14 @@
 <head>
     
     <script>
-        let lastTouchTime = 0;
+        //FA SPARIRE IL TEST ALLE 20
         
+        
+        
+        
+        
+        //FORZA LO SCROLL A 0
+        let lastTouchTime = 0;
         document.addEventListener('touchend', function (event) {
             const now = new Date().getTime();
             if (now - lastTouchTime <= 300) {
@@ -184,7 +190,6 @@
             padding-top:10px;
             padding-bottom:10px;
             z-index:100
-            
         } 
         #sponsortext {
             transform: scaleY(1.3); /* 1 = originale, >1 allunga, <1 schiaccia */
@@ -362,8 +367,8 @@
         }
         .indexpage #scroll-indicator {
             position: fixed;
-            bottom: 10vh;
-            left: 90%;
+            bottom: 2vh;
+            left: 94%;
             padding: 10px 10px;
             font-weight: bold;
             background-color: rgba(181, 4, 121, 1);
@@ -388,7 +393,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
-
+            
             
         }
         .indexpage .chisiamo-button.visible {
@@ -833,7 +838,7 @@
             </div>
             
             <div id="startext">
-                START 21:30  9 AGOSTO
+                9 AGOSTO - START 21:30 
             </div>  
             <div id="sponsortext">
                 I NOSTRI MAIN SPONSOR
@@ -963,6 +968,26 @@
         
         
         <script>
+            function checkDate() {
+                const start2130 = document.getElementById('startext');
+                if (!start2130) return; // se non esiste, esci
+                
+                // Data/ora target: 8 agosto 2025, ore 21:30
+                const targetDate = new Date('2025-08-09T20:00:00+02:00') // Roma in estate (UTC+2)
+                //const targetDate = new Date('2025-08-09T20:00:00+02:00') // Roma in estate (UTC+2)
+                // Mesi in JS: 0 = Gennaio, quindi 7 = Agosto
+                
+                const now = new Date();
+                console.log(targetDate)
+                console.log(now)
+                // Esegui solo se l'ora attuale è uguale o successiva
+                if (now >= targetDate) {
+                    start2130.style.opacity = "0";
+                }
+            }
+            
+            checkDate();
+            setInterval(checkDate, 1000);
             // CODICE INDEX /////////////////////////////////////////
             // CODICE INDEX /////////////////////////////////////////
             // CODICE INDEX /////////////////////////////////////////
@@ -1034,18 +1059,18 @@
             const sponsorHeader = document.getElementById('sponsortext');
             const sponsorHeaderPosition = sponsorHeader.offsetTop; // sponsor header position
             //chisiamobutton
-
-
+            
+            
             
             function updateScrollIndicator() {
                 const scrollable = document.documentElement.scrollHeight > window.innerHeight;
-
+                
                 
                 const scrolled = window.scrollY >= sponsorHeaderPosition;
                 if (scrollable && !scrolled && !scrollIndicator.classList.contains("hidee")) {
                     scrollIndicator.classList.add('visible');
                     chisiamobutton.classList.add('visible');
-
+                    
                 } else {
                     scrollIndicator.classList.remove('visible');
                     chisiamobutton.classList.remove('visible');
