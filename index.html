@@ -37,6 +37,9 @@
         .downarrow {
             transform: rotate(90deg);
         }
+        .uparrow {
+            transform: rotate(270deg);
+        }
         footer {
             padding-top: 100px;
             padding-left: 30px;
@@ -374,6 +377,45 @@
             cursor: pointer;
             pointer-events: auto;
             transition: opacity 0.4s ease;
+            
+        }
+        .indexpage .scroll-indicator {
+            position: fixed;
+            transform: translateX(-50%);
+            font-size: 16pt;
+            opacity: 0;
+            pointer-events: none;
+            
+        }
+        .indexpage #scroll-up-indicator{
+            position: fixed;
+            top: 2vh;
+            left: 94%;
+            font-size: 4vw;
+            display: flex;              /* abilita flexbox */
+            justify-content: center;    /* centro orizzontale */
+            align-items: center;        /* centro verticale */            width: 10vw;       /* diametro proporzionale alla larghezza schermo */
+            height: 10vw;      /* stesso valore per mantenere il cerchio */
+            background-color: rgba(181, 4, 121, 1);
+            border-radius: 50%; /* cerchio perfetto */
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+            color: white;
+            animation: bounce 1s infinite;
+            transition: opacity 0.4s ease;
+        }
+        .indexpage .scroll-up-indicator.visible {
+            opacity: 1;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: opacity 0.4s ease;
+            
+        }
+        .indexpage .scroll-up-indicator {
+            position: fixed;
+            font-size: 16pt;
+            opacity: 0;
+            pointer-events: none;
             
         }
         .indexpage .chisiamo-button {
@@ -742,7 +784,8 @@
         
         <div id="scroll-indicator" class="scroll-indicator"><img src="assets/arrow.png" alt="Freccia" class="downarrow" style="width: 1.3em; height: auto">
         </div>
-        
+        <div id="scroll-up-indicator" class="scroll-up-indicator"><img src="assets/arrow.png" alt="Freccia" class="uparrow" style="width: 1.3em; height: auto">
+        </div>
         <!-- Sfondo -->
         
         <!-- Contenuto -->
@@ -810,8 +853,8 @@
                 <img src="assets/sponsor_4.jpg" alt="F21" class="visible"/>
                 <p class="sponsor-name">TUNDO<br>Costruzioni Ecologia Trasporti</p>
             </div>
-
-                        <div class="sponsor-card">
+            
+            <div class="sponsor-card">
                 <img src="assets/sponsor_5.jpg" alt="F21" class="visible"/>
                 <p class="sponsor-name">Pro Loco Seclì</p>
             </div>
@@ -819,28 +862,28 @@
             
         </div>
         <footer style="font-size: 1em; color: #000000; text-align: center; margin-top: 2em;">
-           ____________________________________ <br> <br><br><br>
-  Privacy: Questo sito non utilizza cookie e non raccoglie dati personali.
-  L’hosting è fornito da GitHub Pages, che può trattare dati tecnici standard (es. indirizzo IP) per il funzionamento del servizio.
-     <br><br>
-    Sviluppato a titolo gratuito da <a href="https://github.com/Lorenzo-Epifani" style="text-decoration: none;"><strong>Lorenzo Epifani</strong></a> per l'Associazione Culturale <strong>Futura 21</strong>.
-</footer>
+            ____________________________________ <br> <br><br><br>
+            Privacy: Questo sito non utilizza cookie e non raccoglie dati personali.
+            L’hosting è fornito da GitHub Pages, che può trattare dati tecnici standard (es. indirizzo IP) per il funzionamento del servizio.
+            <br><br>
+            Sviluppato a titolo gratuito da <a href="https://github.com/Lorenzo-Epifani" style="text-decoration: none;"><strong>Lorenzo Epifani</strong></a> per l'Associazione Culturale <strong>Futura 21</strong>.
+        </footer>
         <!-- MUSIC 
         -->
     </div>
     
     <!-- MUSIC -->
     <div class="music" id="music">
-            <a href="#" id="back-button"> <img src="assets/arrow.png" alt="Freccia" class="leftarrow" style="width: 1.3em; height: auto">
-            </a>
-            <div class="cards">
-                <img loading="lazy" src="assets/cortese.jpg" alt="Cover 1" class="card" data-text="Cortese  Canta Battisti/nSTART ore 22:30" />
-                <img loading="lazy" src="assets/laco.jpg" alt="Cover 2" class="card" data-text="Laco/nSTART ore 21:30" />
-            </div>
-            
-            <!-- Elemento separato per mostrare la caption -->
-            <div id="caption-display"></div>
-            
+        <a href="#" id="back-button"> <img src="assets/arrow.png" alt="Freccia" class="leftarrow" style="width: 1.3em; height: auto">
+        </a>
+        <div class="cards">
+            <img loading="lazy" src="assets/cortese.jpg" alt="Cover 1" class="card" data-text="Cortese  Canta Battisti/nSTART ore 22:30" />
+            <img loading="lazy" src="assets/laco.jpg" alt="Cover 2" class="card" data-text="Laco/nSTART ore 21:30" />
+        </div>
+        
+        <!-- Elemento separato per mostrare la caption -->
+        <div id="caption-display"></div>
+        
         
     </div>
     
@@ -865,7 +908,7 @@
                 <img src="assets/foodmap.jpg" alt="Foodmap" class="map">
             </div>
             
-
+            
             <a href="#" id="back-button"> <img src="assets/arrow.png" alt="Freccia" class="leftarrow" style="width: 1.3em; height: auto"></a>
         </div>
     </div>
@@ -1015,6 +1058,7 @@
             // Logica sponsor
             
             const scrollIndicator = document.getElementById('scroll-indicator');
+            const scrollUpIndicator = document.getElementById('scroll-up-indicator');
             const sponsorHeader = document.getElementById('sponsortext');
             const sponsorHeaderPosition = sponsorHeader.offsetTop; // sponsor header position
             //chisiamobutton
@@ -1034,6 +1078,14 @@
                     scrollIndicator.classList.remove('visible');
                     chisiamobutton.classList.remove('visible');
                 }
+
+               if (!scrolled && !scrollUpIndicator.classList.contains("hidee")) {
+                    scrollUpIndicator.classList.remove('visible');
+                    
+                } else {
+                    scrollUpIndicator.classList.add('visible');
+                }
+
             }
             window.addEventListener('load', updateScrollIndicator);
             window.addEventListener('resize', updateScrollIndicator);
@@ -1042,7 +1094,6 @@
             
             scrollIndicator.addEventListener('click', () => {
                 
-                
                 if (sponsorHeader) {
                     window.scrollTo({
                         top: sponsorHeaderPosition,
@@ -1050,6 +1101,16 @@
                     });
                 }
             });
+            scrollUpIndicator.addEventListener('click', () => {
+                
+                if (sponsorHeader) {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
             
             // CODICE INDEX /////////////////////////////////////////
             // CODICE INDEX /////////////////////////////////////////
