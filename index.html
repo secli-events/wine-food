@@ -21,10 +21,9 @@
             setTimeout(() => window.scrollTo(0, 0), 1);
         });
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom/dist/panzoom.min.js"></script>
+    <script src="./ext/panzoom.js"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+    <link href="./ext/font.css" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Seclì Wine & Food</title>
@@ -32,7 +31,17 @@
     <style>
         /* --- SHARED CSS --------------------------------------------------------------- */
         /* --- SHARED CSS --------------------------------------------------------------- */
-        
+        .leftarrow{
+            transform: rotate(180deg);
+        }
+        .downarrow {
+            transform: rotate(90deg);
+        }
+        footer {
+            padding-top: 100px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
         * {
             box-sizing: border-box;
         }
@@ -476,9 +485,9 @@
             content: '_';
             opacity: 1;
             animation: blink 1s step-end infinite;
-        }
+        }Footer
         #back-button *{
-            transform: rotate(90deg); /* ruota di 45 gradi in senso orario */
+         /* ruota di 45 gradi in senso orario */
         }
         #back-button {
             position: fixed;
@@ -730,7 +739,7 @@
 <body>
     <div class="indexpage" id="indexpage">
         
-        <div id="scroll-indicator" class="scroll-indicator"><i class="fa fa-arrow-down" aria-hidden="true"></i>
+        <div id="scroll-indicator" class="scroll-indicator"><img src="assets/arrow.png" alt="Freccia" class="downarrow" style="width: 1.3em; height: auto">
         </div>
         
         <!-- Sfondo -->
@@ -803,13 +812,20 @@
             
             
         </div>
+        <footer style="font-size: 1em; color: #000000; text-align: center; margin-top: 2em;">
+           ____________________________________ <br> <br><br><br>
+  Privacy: Questo sito non utilizza cookie e non raccoglie dati personali.
+  L’hosting è fornito da GitHub Pages, che può trattare dati tecnici (es. indirizzo IP) per il funzionamento del servizio.
+     <br><br>
+    Sviluppato a titolo gratuito da <a href="https://github.com/Lorenzo-Epifani" style="text-decoration: none;"><strong>Lorenzo Epifani</strong></a> per l'Associazione Culturale <strong>Futura 21</strong>.
+</footer>
         <!-- MUSIC 
         -->
     </div>
     
     <!-- MUSIC -->
     <div class="music" id="music">
-            <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <a href="#" id="back-button"> <img src="assets/arrow.png" alt="Freccia" class="leftarrow" style="width: 1.3em; height: auto">
             </a>
             <div class="cards">
                 <img loading="lazy" src="assets/cortese.jpg" alt="Cover 1" class="card" data-text="Cortese  Canta Battisti/nSTART ore 22:30" />
@@ -830,7 +846,7 @@
             <div class="map-container">
                 <img src="assets/winemap.jpg" alt="Winemap" class="map">
             </div>
-            <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+            <a href="#" id="back-button"> <img src="assets/arrow.png" alt="Freccia" class="leftarrow" style="width: 1.3em; height: auto"></a>
         </div>
     </div>
     
@@ -842,7 +858,9 @@
             <div class="map-container">
                 <img src="assets/foodmap.jpg" alt="Foodmap" class="map">
             </div>
-            <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+            
+
+            <a href="#" id="back-button"> <img src="assets/arrow.png" alt="Freccia" class="leftarrow" style="width: 1.3em; height: auto"></a>
         </div>
     </div>
     
@@ -882,7 +900,7 @@
                 </div>
                 <div class="spacer-box"></div>
                 
-                <a href="#" id="back-button"> <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                <a href="#" id="back-button"> <img src="assets/arrow.png" alt="Freccia" class="leftarrow" style="width: 1.3em; height: auto"></a>
                 
             </div>
             <div id="futuraFooter">
