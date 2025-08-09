@@ -1061,22 +1061,24 @@
             const scrollUpIndicator = document.getElementById('scroll-up-indicator');
             const sponsorHeader = document.getElementById('sponsortext');
             const sponsorHeaderPosition = sponsorHeader.offsetTop; // sponsor header position
-            //chisiamobutton
-            
+            //SEMPRE VISIBILI!
+            scrollUpIndicator.classList.add('visible');
+            scrollIndicator.classList.add('visible');
             
             
             function updateScrollIndicator() {
                 const scrollable = document.documentElement.scrollHeight > window.innerHeight;
                 
                 
-                const scrolled = window.scrollY >= sponsorHeaderPosition;
+                const scrolled = window.scrollY >= sponsorHeaderPosition/20;
                 if (scrollable && !scrolled && !scrollIndicator.classList.contains("hidee")) {
-                    scrollIndicator.classList.add('visible');
                     chisiamobutton.classList.add('visible');
                     
-                } else {
+                } 
+                else {
+                    chisiamobutton.classList.remove('visible');}
+                    /*
                     scrollIndicator.classList.remove('visible');
-                    chisiamobutton.classList.remove('visible');
                 }
 
                if (!scrolled && !scrollUpIndicator.classList.contains("hidee")) {
@@ -1084,7 +1086,7 @@
                     
                 } else {
                     scrollUpIndicator.classList.add('visible');
-                }
+                }*/
 
             }
             window.addEventListener('load', updateScrollIndicator);
