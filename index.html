@@ -29,6 +29,73 @@
     <title>Seclì Wine & Food</title>
     
     <style>
+        @font-face {
+            font-family: "The Seasons";
+            src: url("./assets/2026/font/The Seasons Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: "The Seasons";
+            src: url("./assets/2026/font/The Seasons Light.ttf") format("truetype");
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: "The Seasons";
+            src: url("./assets/2026/font/The Seasons Italic.ttf") format("truetype");
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        @font-face {
+            font-family: "The Seasons";
+            src: url("./assets/2026/font/The Seasons Light Italic.ttf") format("truetype");
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        @font-face {
+            font-family: "The Seasons";
+            src: url("./assets/2026/font/The Seasons Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: "The Seasons";
+            src: url("./fonts/The Seasons Bold Italic.ttf") format("truetype");
+            font-weight: 700;
+            font-style: italic;
+        }
+        :root {
+            --color-page-bg: #530030;
+            --color-map-bg: #ffeeef;
+            --color-text-light: #ffffff;
+            --color-text-dark: #000000;
+            --color-transparent: transparent;
+            --color-accent-primary: rgba(181, 4, 121, 1);
+            --color-accent-aura: rgba(181, 4, 121, 0.7);
+            --color-brand-bg: rgb(146, 56, 71);
+            --color-brand-bg-soft: rgba(130, 42, 56, 0.85);
+            --color-brand-bg-solid: rgba(130, 42, 56, 1);
+            --color-sponsors-bg: rgba(131, 72, 87, 0.55);
+            --color-button-bg: rgba(255, 255, 255, 1);
+            --color-button-bg-alt: #fdfaf5;
+            --color-button-border: #000000;
+            --color-button-shadow: rgba(131, 72, 87, 0.80);
+            --color-button-title: rgb(208, 0, 72);
+            --color-button-subtitle: rgb(120, 48, 66);
+            --color-ui-gray: rgb(150, 150, 150);
+            --color-artist-shadow: rgb(145, 145, 145);
+            --color-shadow-soft: rgba(0, 0, 0, 0.3);
+            --color-shadow-muted: rgba(0, 0, 0, 0.2);
+            --color-shadow-medium: rgba(0, 0, 0, 0.5);
+            --color-shadow-strong: rgba(0, 0, 0, 0.7);
+        }
+        
         /* --- SHARED CSS --------------------------------------------------------------- */
         /* --- SHARED CSS --------------------------------------------------------------- */
         .leftarrow{
@@ -60,7 +127,7 @@
             padding: 0;
             font-family: sans-serif;
             overflow-x: hidden;
-            background-color: #530030;
+            background-color: var(--color-page-bg);
         }
         html.scroll-locked,
         body.scroll-locked {
@@ -74,7 +141,7 @@
             font-size:0!important;
             border-radius: 0 !important;
             border: none!important;
-            color: transparent!important;
+            color: var(--color-transparent) !important;
             pointer-events: none!important;
             transition: opacity 0.3s ease-in, width 0.3s ease-in, height 0.3s ease-in font-size 0.3s ease-in border-radius 0.3s ease-in border 0.3s ease-in color 0.3s ease-in !important;
         }
@@ -131,29 +198,29 @@
         }
         @keyframes pulse-border {
             0% {
-                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                box-shadow: 0 0 25px 20px var(--color-accent-primary);
                 border-radius: 20px;
             }
             50% {
-                box-shadow: 0 0 10px 2px rgba(181, 4, 121, 1);
+                box-shadow: 0 0 10px 2px var(--color-accent-primary);
                 border-radius: 26px;
             }
             100% {
-                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                box-shadow: 0 0 25px 20px var(--color-accent-primary);
                 border-radius: 20px;
             }
         }
         @keyframes pulse-border2 {
             0% {
-                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                box-shadow: 0 0 25px 20px var(--color-accent-primary);
                 border-radius: 20px;
             }
             50% {
-                box-shadow: 0 0 1px 23px rgba(181, 4, 121, 1);
+                box-shadow: 0 0 1px 23px var(--color-accent-primary);
                 border-radius: 260px;
             }
             100% {
-                box-shadow: 0 0 25px 20px rgba(181, 4, 121, 1);
+                box-shadow: 0 0 25px 20px var(--color-accent-primary);
                 border-radius: 20px;
             }
         }
@@ -165,14 +232,14 @@
             grid-template-columns: repeat(2, 1fr); /* due colonne */
             gap: 2vw;                              /* spazio tra card */
             justify-items: center;     
-            background-color:  rgba(131, 72, 87, 0.55);       
+            background-color: var(--color-sponsors-bg);
             opacity:1;
             padding-top:60px;
             padding-bottom:20px;
         }
         
         .sponsor-card {
-            background-color: rgba(130, 42, 56, 0.85);
+            background-color: var(--color-brand-bg-soft);
             border-radius: 15px;
             text-align: center;
             width: 100%;            /* occupa tutta la colonna */
@@ -191,7 +258,7 @@
             margin-top: 8px;
             font-weight: bold;
             font-size: clamp(13px, 4vw, 18px); /* leggibile su vari telefoni */
-            color: white;
+            color: var(--color-text-light);
         }
         
         
@@ -204,8 +271,8 @@
             bottom:0;
             width: 100%;
             font-family: "Nata Sans", sans-serif;
-            color:white;
-            background-color:  rgb(146, 56, 71); 
+            color: var(--color-text-light);
+            background-color: var(--color-brand-bg);
             padding-top:10px;
             padding-bottom:10px;
             z-index:100
@@ -217,8 +284,8 @@
             margin-top: 100px;
             font-size: 6vw;
             font-family: "Nata Sans", sans-serif;
-            color:white;
-            background-color:  rgba(130, 42, 56, 0.85); 
+            color: var(--color-text-light);
+            background-color: var(--color-brand-bg-soft);
             padding-top:10px;
             padding-bottom:10px
         }
@@ -243,7 +310,7 @@
         .indexpage .image-row img {
             max-height: 50px;
             object-fit: contain;
-            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 0 3px var(--color-shadow-soft));
         }
         
         
@@ -266,8 +333,8 @@
         }
         .indexpage h1, p {
             text-align: center;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            color: var(--color-text-light);
+            text-shadow: 1px 1px 3px var(--color-shadow-strong);
             margin: 10px;
         }
         
@@ -290,15 +357,15 @@
             justify-content: left;
             cursor: pointer;
             font-weight: bold; 
-            background-color: rgba(255, 255, 255, 1); 
-            color: white;
-            border: 2px solid black;
+            background-color: var(--color-button-bg);
+            color: var(--color-text-light);
+            border: 2px solid var(--color-button-border);
             border-radius: 48px;
             transition: background-color 0.25s ease;
         }
         
         .indexpage .buttons button:hover {
-            background-color: rgba(130, 42, 56, 1); 
+            background-color: var(--color-brand-bg-solid);
             transition: background-color 0.1s ease-in;
         }
         .map-button {
@@ -307,9 +374,10 @@
             border: none;
             align-items: center;  /* 🔥 Questa proprietà centra verticalmente tutto */
             
-            background-color: #fdfaf5;
+            background-color: var(--color-button-bg-alt);
             border-radius: 12px;
-            box-shadow: 9px 9px 0 rgba(131, 72, 87, 0.80);            cursor: pointer;
+            box-shadow: 9px 9px 0 var(--color-button-shadow);
+            cursor: pointer;
             font-family: "Inter", sans-serif;
             text-align: left;
         }
@@ -320,21 +388,21 @@
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            font-family: "Bodoni Moda", serif;
-            
-            
+            font-family: "The Seasons", serif;
+            font-weight: 600;            
+                    
         }
         
         .button-text .title {
             font-size: 6.2vw;
             font-weight: 600;
-            color: rgb(208, 0, 72);
+            color: var(--color-button-title);
             font-weight: 700
         }
         
         .button-text .bottomtext {
             font-size: 3.5vw;
-            color:  rgb(120, 48, 66);
+            color: var(--color-button-subtitle);
         }
         
         .indexpage .icon {
@@ -367,11 +435,11 @@
             justify-content: center;    /* centro orizzontale */
             align-items: center;        /* centro verticale */            width: 10vw;       /* diametro proporzionale alla larghezza schermo */
             height: 10vw;      /* stesso valore per mantenere il cerchio */
-            background-color: rgb(150, 150, 150);
+            background-color: var(--color-ui-gray);
             border-radius: 50%; /* cerchio perfetto */
             z-index: 1000;
             transition: background-color 0.3s ease;
-            color: white;
+            color: var(--color-text-light);
             animation: bounce 1s infinite;
             transition: opacity 0.4s ease;
         }
@@ -399,11 +467,11 @@
             justify-content: center;    /* centro orizzontale */
             align-items: center;        /* centro verticale */            width: 10vw;       /* diametro proporzionale alla larghezza schermo */
             height: 10vw;      /* stesso valore per mantenere il cerchio */
-            background-color:  rgb(150, 150, 150);
+            background-color: var(--color-ui-gray);
             border-radius: 50%; /* cerchio perfetto */
             z-index: 1000;
             transition: background-color 0.3s ease;
-            color: white;
+            color: var(--color-text-light);
             animation: bounce 1s infinite;
             transition: opacity 0.4s ease;
         }
@@ -441,7 +509,7 @@
             margin: 0;
             padding: 0;
             height: 90vh;
-            /* background-color: rgb(83, 0, 116); */
+            /* background-color: var(--color-page-bg); */
             font-family: sans-serif;
             position: relative; /* Necessario per il corretto z-index dello pseudo-elemento */
         }
@@ -460,14 +528,14 @@
             width: 37vw;
             aspect-ratio: 1 / 1;
             border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px var(--color-shadow-soft);
             transition: all 0.5s ease;
             cursor: pointer;
             z-index: 1;
             object-fit: cover;
             transform-origin: center center; 
             border-style: visible;
-            box-shadow: 4px 4px 4px 4px rgb(145, 145, 145);
+            box-shadow: 4px 4px 4px 4px var(--color-artist-shadow);
             border-radius: 20px;             
         }
         
@@ -477,7 +545,7 @@
             margin: auto;
             object-fit: cover;
             z-index: 999;
-            border: 2vw solid rgb(146, 56, 71);
+            border: 2vw solid var(--color-brand-bg);
             animation: none !important;
             box-shadow: none;
             border-radius: 2vw;   
@@ -504,12 +572,12 @@
         /* --- NUOVI STILI PER LA CAPTION --- */
         .music #caption-display {
             margin: 4vw auto 0 auto; /* distanza sopra e centrato orizzontalmente */
-            color: black;
+            color: var(--color-text-dark);
             width: 52vw;
             
             font-weight: bold;
             font-size: 5vw;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 2px 2px 8px var(--color-shadow-strong);
             z-index: 1000;
             opacity: 0;
             border-style: visible;
@@ -520,7 +588,7 @@
             text-align: center;
             padding: 10px 20px;
             box-sizing: border-box;
-            background-color: rgb(146, 56, 71); 
+            background-color: var(--color-brand-bg);
             backdrop-filter: blur(4px);
         }
         
@@ -543,17 +611,17 @@
             justify-content: center;    /* centro orizzontale */
             align-items: center;        /* centro verticale */            width: 10vw;       /* diametro proporzionale alla larghezza schermo */
             height: 10vw;      /* stesso valore per mantenere il cerchio */
-            background-color:  rgb(150, 150, 150);
+            background-color: var(--color-ui-gray);
             border-radius: 50%; /* cerchio perfetto */
             z-index: 1000;
             transition: background-color 0.3s ease;
-            color: white;
+            color: var(--color-text-light);
             animation: bounce 1s infinite;
             transition: opacity 0.4s ease;
         }
         
         #back-button:hover {
-            background-color:  rgb(150, 150, 150);
+            background-color: var(--color-ui-gray);
         }    
         
         
@@ -588,9 +656,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 8vw;
-            color:  rgba(181, 4, 121, 1);
+            color: var(--color-accent-primary);
             font-weight: bold;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 10px var(--color-shadow-medium);
             z-index: 10;
             width: 80vw;
             pointer-events: none; /* Impedisce interazione con la scritta */
@@ -610,7 +678,7 @@
             transform: translate(-50%, -50%);
             width: 120%;
             height: 120%;
-            background: rgba(181, 4, 121, 0.7);
+            background: var(--color-accent-aura);
             z-index: -1;
             border-radius: 50%;
             filter: blur(50px);
@@ -632,10 +700,10 @@
             border-radius: 50%;
             border: none;
             display: flex;
-            background-color: transparent;
+            background-color: var(--color-transparent);
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 6px var(--color-shadow-muted);
             cursor: pointer;
             z-index: 999;
             animation: pulse 1.5s infinite ease-in-out;
@@ -688,7 +756,7 @@
         .map {
             padding-top:60vw;
             position: relative;
-            background-color: #ffeeef;
+            background-color: var(--color-map-bg);
             width: 100%;
             height: auto;
             transition: opacity 0.5s ease; /* Transizione per il fade-out */
@@ -733,10 +801,10 @@
             padding-top:3vw;
             padding-left:10px ;
             padding-right:10px ;
-            color: white;
-            background-color: rgba(130, 42, 56, 1);
+            color: var(--color-text-light);
+            background-color: var(--color-brand-bg-solid);
             border-radius: 10px;
-            border: solid 10px rgba(130, 42, 56, 1); 
+            border: solid 10px var(--color-brand-bg-solid);
             z-index: 200;
             position: relative; /* o absolute o fixed, a seconda del comportamento desiderato */
             margin-bottom: 100px; /* crea spazio vuoto sotto */
@@ -751,7 +819,7 @@
             flex-direction: column; /* disposizione verticale */
             gap: 10px;
             z-index: 1000;
-            background: transparent; /* assicurati che sia invisibile */
+            background: var(--color-transparent); /* assicurati che sia invisibile */
             
         }
         
@@ -774,7 +842,7 @@
         }
         .spacer-box {
             height: 2vw;
-            background: transparent; /* oppure rgba(0, 0, 0, 0) */
+            background: var(--color-transparent);
         }
         
     </style>
@@ -858,7 +926,7 @@
             
             
         </div>
-        <footer style="font-size: 1em; color: #ffffff; text-align: center; margin-top: 2em;">
+        <footer style="font-size: 1em; color: var(--color-text-light); text-align: center; margin-top: 2em;">
             ____________________________________ <br> <br><br><br>
             Privacy: Questo sito non utilizza cookie e non raccoglie dati personali.
             L’hosting è fornito da GitHub Pages, che può trattare dati tecnici standard (es. indirizzo IP) per il funzionamento del servizio.
@@ -1080,14 +1148,14 @@
                     /*
                     scrollIndicator.classList.remove('visible');
                 }
-
-               if (!scrolled && !scrollUpIndicator.classList.contains("hidee")) {
+                
+                if (!scrolled && !scrollUpIndicator.classList.contains("hidee")) {
                     scrollUpIndicator.classList.remove('visible');
                     
                 } else {
                     scrollUpIndicator.classList.add('visible');
                 }*/
-
+                
             }
             window.addEventListener('load', updateScrollIndicator);
             window.addEventListener('resize', updateScrollIndicator);
