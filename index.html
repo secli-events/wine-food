@@ -62,6 +62,11 @@
             overflow-x: hidden;
             background-color: #ffeeef;
         }
+        html.scroll-locked,
+        body.scroll-locked {
+            overflow: hidden;
+            height: 100%;
+        }
         .hidee {
             opacity: 0 !important;
             height: 0 !important;
@@ -999,6 +1004,9 @@
                         el.classList.add("hidee");
                     });
                 })
+                const shouldLockScroll = target_page.id === "music";
+                document.documentElement.classList.toggle("scroll-locked", shouldLockScroll);
+                document.body.classList.toggle("scroll-locked", shouldLockScroll);
             }
             
             
